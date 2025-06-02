@@ -2,3 +2,4 @@
 Capstone project for SDEV435 Applied Software Practice SUM 2025
 
 Skill_Tracker java application with command line interface using relational database
+If I change this file in VS Code, it will ask me if I want to commit to GitHub
