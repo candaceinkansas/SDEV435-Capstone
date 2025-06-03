@@ -1,0 +1,6 @@
+// This configuration helps VS Code compile with the JDBC library automatically
+{
+    "java.project.referencedLibraries": [
+        "lib/sqlite-jdbc-*.jar"
+    ]
+}
