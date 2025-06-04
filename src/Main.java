@@ -7,7 +7,7 @@
  */
 
  // Import necessary utilities
- import java.util.List;
+ // import java.util.List;   -----------------NOT USED
  import java.util.Scanner;
  
  // Main class to run the Skill Tracker application
@@ -59,13 +59,14 @@
                         System.out.println("Invalid choice, please try again.");
                 }
             
-            scanner.close();}
-
- catch (Exception e) {
-            System.err.println("An error occurred: " + e.getMessage());
-            e.printStackTrace();
-        }
+        
+        scanner.close();
+    }
+    } catch (Exception e) {
+        System.err.println("An error occurred: " + e.getMessage());
+        e.printStackTrace();
     }
 }
- }
+}
+
                 
