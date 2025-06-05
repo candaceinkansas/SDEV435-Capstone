@@ -19,8 +19,10 @@
             Scanner scanner = new Scanner(System.in);
 
             //print the greeting and menu options
+            System.out.println(); // Print a blank line for readability
+            System.out.println("Welcome to the Skill Tracker Application!");
             while (true) {
-                System.out.println("Welcome to the Skill Tracker Application!");
+                System.out.println(); // Print a blank line for before presenting the menu
                 System.out.println("1. Add a new skill");
                 System.out.println("2. View all skills");
                 System.out.println("3. Exit");
@@ -33,6 +35,7 @@
                 // Process the user's choice            
                 switch (choice) {
                     case 1:
+                        System.out.println(); // Print a blank line for readability
                         System.out.print("Enter skill name: ");
                         String skillName = scanner.nextLine();
                         System.out.print("Enter skill proficiency: ");
@@ -44,22 +47,27 @@
         
                         // Create a new Skill object and add it to the database
                         dao.addSkill(new Skill(skillName, proficiency, category, lastUsed));
+                        System.out.println(); // Print a blank line for readability
                         System.out.println("Skill added successfully!");
                         break;
                     case 2:
+                        System.out.println(); // Print a blank line for readability
                         System.out.println("Skills:");
                         for (Skill skill : dao.getAllSkills()) {
                             System.out.println("- " + skill.getName());
-                        }
+                            }
                         break;
                     case 3:
+                        System.out.println(); // Print a blank line for readability
                         System.out.println("Exiting the application.");
+                        System.out.println(); // Print a blank line before returning to system prompt 
                         scanner.close();
                         System.exit(0);
                         return;
                     default:
-                        System.out.println(); // Print a blank line for better readability
+                        System.out.println(); // Print a blank line for readability
                         System.out.println("Invalid choice, please try again.");
+                        
                 }
 
             }
