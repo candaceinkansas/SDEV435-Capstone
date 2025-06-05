@@ -14,8 +14,8 @@
  public class Main {
     public static void main(String[] args) {
         try {
-            //Initialize the DAO with teh SQLite database
-            SkillDAO dao = new SkillDAO("skills_tracker.sqlite");
+            //Initialize the DAO with the SQLite database
+            SkillDAO dao = new SkillDAO("skills_tracker.db");
             Scanner scanner = new Scanner(System.in);
 
             //print the greeting and menu options
@@ -54,19 +54,18 @@
                         break;
                     case 3:
                         System.out.println("Exiting the application.");
+                        scanner.close();
+                        System.exit(0);
                         return;
                     default:
+                        System.out.println(); // Print a blank line for better readability
                         System.out.println("Invalid choice, please try again.");
                 }
-            
-        
-        scanner.close();
-    }
-    } catch (Exception e) {
-        System.err.println("An error occurred: " + e.getMessage());
-        e.printStackTrace();
-    }
-}
-}
 
-                
+            }
+        } catch (Exception e) {
+            System.err.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
