@@ -36,7 +36,7 @@ public class MileDAO {
             "mileCompleteDate INTEGER, " +
             "userID INTEGER, " +
             "PRIMARY KEY(mileID AUTOINCREMENT), " +
-            "FOREIGN KEY(userID) REFERENCES User(userID) " +
+            "FOREIGN KEY(userID) REFERENCES user(userID) " +
             ") STRICT";
 
 

@@ -36,7 +36,7 @@ public class CertDAO {
             "certCompleteDate INTEGER, " +
             "userID INTEGER, " +
             "PRIMARY KEY(certID AUTOINCREMENT), " +
-            "FOREIGN KEY(userID) REFERENCES User(userID) " +
+            "FOREIGN KEY(userID) REFERENCES user(userID) " +
             ") STRICT";
 
 
