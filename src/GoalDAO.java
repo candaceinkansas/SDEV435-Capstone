@@ -36,7 +36,8 @@ public class GoalDAO {
             "goalCompleteDate INTEGER, " +
             "userID INTEGER, " +
             "PRIMARY KEY(goalID AUTOINCREMENT), " +
-            "FOREIGN KEY(userID) REFERENCES User(userID) " +
+            "FOREIGN KEY(certID) REFERENCES certification(certID) " +
+            "FOREIGN KEY(userID) REFERENCES user(userID) " +
             ") STRICT";
 
 
