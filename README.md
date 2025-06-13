@@ -11,3 +11,4 @@ Run the app to initialize it.
 javac -cp "lib/sqlite-jdbc-3.49.1.0.jar" src/*.java
 java -cp "lib/sqlite-jdbc-3.49.1.0.jar;src" Main
 
+this is a change to the read me file
