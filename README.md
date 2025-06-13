@@ -7,7 +7,7 @@ This project creates skills_tracker.db automatically in the project root if it d
 Run the app to initialize it.
 
 ## How to Run
-```bash
+bash
 javac -cp "lib/sqlite-jdbc-3.49.1.0.jar" src/*.java
 java -cp "lib/sqlite-jdbc-3.49.1.0.jar;src" Main
 
