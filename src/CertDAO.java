@@ -29,13 +29,13 @@ public class CertDAO {
     // Method to create the certification table if it does not exist
     private void createTable() throws SQLException {
         String sql = "CREATE TABLE IF NOT EXISTS certification (" +
-            "certID	INTEGER NOT NULL UNIQUE, " +
+            "certID	INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "certName	TEXT NOT NULL, " +
             "certStatus TEXT NOT NULL CHECK(certStatus IN ('Not Started', 'In Progress', 'Completed')), " +
             "certTargetDate	INTEGER, " +
             "certCompleteDate INTEGER, " +
             "userID INTEGER, " +
-            "PRIMARY KEY(certID AUTOINCREMENT), " +
+            //"PRIMARY KEY(certID AUTOINCREMENT), " +
             "FOREIGN KEY(userID) REFERENCES user(userID) " +
             ") STRICT";
 
