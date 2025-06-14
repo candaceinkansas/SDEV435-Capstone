@@ -80,12 +80,15 @@
                                 String certTargetDate = scanner.nextLine();
                                 System.out.print("Enter completion date (YYYY-MM-DD): ");
                                 String certCompleteDate = scanner.nextLine();
-                                
+                                System.out.print("Enter user ID: ");
+                                int UserID = scanner.nextInt();
+                                scanner.nextLine(); // Consume newline
+
                                 // Create a new Certification object and add it to the database
                                 CertDAO certDAO = new CertDAO("skills_tracker.db");
-                                certDAO.addCert(new Cert(certName, certStatus, certTargetDate, certCompleteDate, 1));
+                                certDAO.addCert(new Cert(certName, certStatus, certTargetDate, certCompleteDate, UserID));
                                 System.out.println(); // Print a blank line for readability
-                                System.out.println("Certification added successfully.");
+                                System.out.println("Process complete.  What's next?");
                                 break;
 
                             case 2: // Update Certification

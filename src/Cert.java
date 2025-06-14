@@ -19,16 +19,16 @@ public class Cert {
     private int userID;
 
     // Constructor to initialize the Certification properties
-    public Cert(String certName, String certStatus, String certTargetDate, String certCompleteDate) {
+    public Cert(String certName, String certStatus, String certTargetDate, String certCompleteDate, int userID) {
         this.certName = certName;
         this.certStatus = certStatus; 
         this.certTargetDate = certTargetDate;
         this.certCompleteDate = certCompleteDate;
     }
         public Cert(int certID, String certName, String certStatus, String certTargetDate, String certCompleteDate, int userID) {
-            this(certName, certStatus, certTargetDate, certCompleteDate);
+            this(certName, certStatus, certTargetDate, certCompleteDate, userID);
             this.certID = certID;
-            this.userID = userID;
+            //this.userID = userID;
         }
 
     // Getters and setters for each property

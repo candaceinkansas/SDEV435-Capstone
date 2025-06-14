@@ -32,8 +32,8 @@ public class CertDAO {
             "certID	INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "certName	TEXT NOT NULL, " +
             "certStatus TEXT NOT NULL CHECK(certStatus IN ('Not Started', 'In Progress', 'Completed')), " +
-            "certTargetDate	INTEGER, " +
-            "certCompleteDate INTEGER, " +
+            "certTargetDate	TEXT, " +
+            "certCompleteDate TEXT, " +
             "userID INTEGER, " +
             //"PRIMARY KEY(certID AUTOINCREMENT), " +
             "FOREIGN KEY(userID) REFERENCES user(userID) " +
@@ -50,7 +50,7 @@ public class CertDAO {
     // Method to add a new certification to the database
     // Uses a prepared statement to prevent SQL injection and handle null values
     public void addCert(Cert cert) throws SQLException {
-        String sql = "INSERT INTO certification (certName, certStatus, certTargetDate, certCompleteDate, userID) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO certification (certName, certStatus, certTargetDate, certCompleteDate, UserID) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, cert.getCertName());
             pstmt.setString(2, cert.getCertStatus());
