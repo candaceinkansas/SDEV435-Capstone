@@ -105,7 +105,6 @@
                                     scanner.nextLine(); // Consume newline
 
                                     // Create a new Certification object and add it to the database
-                                    
                                     certDAO.addCert(new Cert(certName, certStatus, certTargetDate, certCompleteDate, UserID));
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Process complete.  What's next?");
@@ -154,8 +153,8 @@
                                     System.out.println(); // Print a blank line for readability
                                     System.out.print("Enter goal name: ");
                                     String goalName = scanner.nextLine();
-                                    System.out.print("Enter goal description: ");
-                                    String goalDescription = scanner.nextLine();
+                                    System.out.print("Enter goal status (Not Started, In Progress, Completed): ");
+                                    String goalStatus = scanner.nextLine();
                                     System.out.print("Enter target date (YYYY-MM-DD): ");
                                     String goalTargetDate = scanner.nextLine();
                                     System.out.print("Enter completion date (YYYY-MM-DD): ");
@@ -165,16 +164,32 @@
                                     scanner.nextLine(); // Consume newline
 
                                     // Create a new Goal object and add it to the database
-                                    goalDAO.addGoal(new Goal(goalName, goalDescription, goalTargetDate, goalCompleteDate, UserID));
+                                    goalDAO.addGoal(new Goal(goalName, goalStatus, goalTargetDate, goalCompleteDate, UserID));
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Process complete.  What's next?");
-                                    break;System.out.println(); // Print a blank line for readability
-                        System.out.println("Manage Goals");
-                        System.out.println("1. Add Goal");
-                        System.out.println("2. View Goals");
-                        System.out.println("3. Update Goal");
-                        System.out.println("4. Delete Goal");
-                        System.out.print("Choose an option: ");
+                                    break;
+
+                                case 2: // Update Goal Status
+                                    // Implementation not yet coded
+                                    break;
+                                
+                                case 3: // View Goals
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.println("Goals:");
+                                    for (Goal goal : goalDAO.getAllGoals()) {
+                                        System.out.println("- " + goal.getGoalName());
+                                    }
+                                    break;
+
+                                case 4: // Return to Main Menu
+                                    continueGoalInner = false; // allows exit of the goal management loop
+                                    break;
+
+                                default: // Handle invalid choices
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.println("Invalid choice, please try again.");
+                            }
+                        } break; // End of case 2: Manage Goals
                         int goalChoice = scanner.nextInt();
                         scanner.nextLine(); // Consume newline
                         

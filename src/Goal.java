@@ -19,14 +19,14 @@ public class Goal {
     private int userID;
 
     // Constructor to initialize the Goal properties
-    public Goal(String goalName, String goalStatus, String goalTargetDate, String goalCompleteDate) {
+    public Goal(String goalName, String goalStatus, String goalTargetDate, String goalCompleteDate, int userID) {
         this.goalName = goalName;
         this.goalStatus = goalStatus; 
         this.goalTargetDate = goalTargetDate;
         this.goalCompleteDate = goalCompleteDate;
     }
     public Goal(int goalID, String goalName, String goalStatus, String goalTargetDate, String goalCompleteDate, int userID) {
-        this(goalName, goalStatus, goalTargetDate, goalCompleteDate);
+        this(goalName, goalStatus, goalTargetDate, goalCompleteDate, userID);
         this.goalID = goalID;
         this.userID = userID;
     }
