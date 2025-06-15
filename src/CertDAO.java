@@ -35,8 +35,7 @@ public class CertDAO {
             "certTargetDate	TEXT, " +
             "certCompleteDate TEXT, " +
             "userID INTEGER, " +
-            //"PRIMARY KEY(certID AUTOINCREMENT), " +
-            //"FOREIGN KEY(userID) REFERENCES user(userID) " +
+            "FOREIGN KEY(userID) REFERENCES user(userID) " +
             ") STRICT";
 
 

@@ -18,10 +18,11 @@
             // If the database does not exist, it will be created
             // If the tables do not exist, they will be created
             SkillDAO dao = new SkillDAO("skills_tracker.db");   // DELETE THIS ONE WHEN DONE TESTING
+            UserDAO userDao = new UserDAO("skills_tracker.db");
             CertDAO certDAO = new CertDAO("skills_tracker.db");
             GoalDAO goalDAO = new GoalDAO("skills_tracker.db");
             MileDAO mileDAO = new MileDAO("skills_tracker.db");
-            UserDAO userDao = new UserDAO("skills_tracker.db");
+            
 
             // Create a Scanner object to read user input
             Scanner scanner = new Scanner(System.in);
