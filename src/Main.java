@@ -15,6 +15,8 @@
     public static void main(String[] args) {
         try {
             // Initialize the DAO for all tables within the SQLite database
+            // If the database does not exist, it will be created
+            // If the tables do not exist, they will be created
             SkillDAO dao = new SkillDAO("skills_tracker.db");   // DELETE THIS ONE WHEN DONE TESTING
             CertDAO certDAO = new CertDAO("skills_tracker.db");
             GoalDAO goalDAO = new GoalDAO("skills_tracker.db");
@@ -23,8 +25,6 @@
 
             // Create a Scanner object to read user input
             Scanner scanner = new Scanner(System.in);
-
-
 
             // Check if the user table is empty and prompt to add a new user if it is
             if (userDao.getAllUsers().isEmpty()) {
@@ -52,7 +52,7 @@
                 System.out.println("2. Manage Goals");
                 System.out.println("3. Manage Milestones");
                 System.out.println("4. Generate Reports");
-                System.out.println("5. View all users");
+                System.out.println("5. View User Information");
                 System.out.println("6. Exit");
 
 
@@ -289,13 +289,13 @@
                         } break;
                         // End of case 4: Generate Reports
 
-                    case 5: // View all users
+                    case 5: // View User Information
                         System.out.println(); // Print a blank line for readability
-                        System.out.println("Users:");
+                        System.out.println("User Information:");
                         for (User user : userDao.getAllUsers()) {
-                            System.out.println("- " + user.getFirstName() + " " + user.getLastName());
+                            System.out.println("- " + user.getUserID() + " " + user.getFirstName() + " " + user.getLastName());
                         } break;
-                        // End of case 5: View all users
+                        // End of case 5: View User Information
                     case 6: // Exit the application
                         System.out.println(); // Print a blank line for readability
                         // Close scanner and close all DAO connections before exiting
