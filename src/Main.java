@@ -96,12 +96,12 @@
                                     String certTargetDate = scanner.nextLine();
                                     System.out.print("Enter completion date (YYYY-MM-DD): ");
                                     String certCompleteDate = scanner.nextLine();
-                                    System.out.print("Enter user ID: ");
-                                    int UserID = scanner.nextInt();
+                                    System.out.print("Enter user number: ");
+                                    int userID = scanner.nextInt();
                                     scanner.nextLine(); // Consume newline
 
                                     // Create a new Certification object and add it to the database
-                                    certDAO.addCert(new Cert(certName, certStatus, certTargetDate, certCompleteDate, UserID));
+                                    certDAO.addCert(new Cert(certName, certStatus, certTargetDate, certCompleteDate, userID));
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Process complete.  What's next?");
                                     break;
@@ -293,7 +293,7 @@
                         System.out.println(); // Print a blank line for readability
                         System.out.println("User Information:");
                         for (User user : userDao.getAllUsers()) {
-                            System.out.println("- " + user.getUserID() + " " + user.getFirstName() + " " + user.getLastName());
+                            System.out.println("\t user number " + user.getUserID() + ": " + user.getFirstName() + " " + user.getLastName());
                         } break;
                         // End of case 5: View User Information
                     case 6: // Exit the application
