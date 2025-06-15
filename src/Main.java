@@ -52,13 +52,13 @@
                 System.out.println("2. Manage Goals");
                 System.out.println("3. Manage Milestones");
                 System.out.println("4. Generate Reports");
-                System.out.println("5. Exit");
+                System.out.println("5. View all users");
+                System.out.println("6. Exit");
 
 
                 // DELETE THESE AFTER TESTING
                 System.out.println("10. Add a new skill");
                 System.out.println("12. View all skills");
-                System.out.println("14. View all users");
 
                 
 
@@ -79,8 +79,9 @@
                             System.out.println("1. Add Certification");
                             System.out.println("2. Update Certification");
                             System.out.println("3. View Certifications");
-                            System.out.println("4. Return to Main Menu");
-                            System.out.print("Please enter your selection (1-4): ");
+                            System.out.println("4. View Users");
+                            System.out.println("5. Return to Main Menu");
+                            System.out.print("Please enter your selection (1-5): ");
                             int certChoice = scanner.nextInt();
                             scanner.nextLine(); // Consume newline
 
@@ -105,10 +106,12 @@
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Process complete.  What's next?");
                                     break;
+                                    // End of case 1: Add Certification
 
                                 case 2: // Update Certification
                                     // Implementation not yet coded
                                     break;
+                                    // End of case 2: Update Certification
 
                                 case 3: // View Certifications
                                     System.out.println(); // Print a blank line for readability
@@ -117,10 +120,13 @@
                                         System.out.println("- " + cert.getCertName());
                                     }
                                     break;
+                                    // End of case 3: View Certifications
 
-                                case 4: // Return to Main Menu
+                                    // End of case 4: View Users
+                                case 5: // Return to Main Menu
                                     continueCertInner = false; // allows exit of the certification management loop
                                     break;
+                                    // End of case 5: Return to Main Menu
                                 
                                 default: // Handle invalid choices
                                     System.out.println(); // Print a blank line for readability
@@ -282,12 +288,16 @@
                                     System.out.println("Invalid choice, please try again.");
                             }
                         } break;
-                    // End of case 4: Generate Reports
+                        // End of case 4: Generate Reports
 
-
-
-
-                    case 5: // Exit the application
+                    case 5: // View all users
+                        System.out.println(); // Print a blank line for readability
+                        System.out.println("Users:");
+                        for (User user : userDao.getAllUsers()) {
+                            System.out.println("- " + user.getFirstName() + " " + user.getLastName());
+                        } break;
+                        // End of case 5: View all users
+                    case 6: // Exit the application
                         System.out.println(); // Print a blank line for readability
                         // Close scanner and close all DAO connections before exiting
                         scanner.close();
@@ -300,7 +310,7 @@
                         System.out.println(); // Print a blank line before returning to system prompt 
                         System.exit(0);
                         return;
-                    // End of case 5: Exit the application
+                        // End of case 6: Exit the application
 
 
 
@@ -327,13 +337,7 @@
                             System.out.println("- " + skill.getName());
                             }
                         break;
-                    case 14: // View all users
-                        System.out.println(); // Print a blank line for readability
-                        System.out.println("Users:");
-                        for (User user : userDao.getAllUsers()) {
-                            System.out.println("- " + user.getFirstName() + " " + user.getLastName());
-                        }
-                        break;
+
                     
                     
                     
