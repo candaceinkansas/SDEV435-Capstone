@@ -190,12 +190,7 @@
                                     System.out.println("Invalid choice, please try again.");
                             }
                         } break; // End of case 2: Manage Goals
-                        int goalChoice = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
-                        
-                        // Handle goal management options here
-                        // (Implementation not yet coded) 
-                        break;
+                        // check continueGoalInner flag and either return to the main menu or continue with the goal management loop
                     // End of case 2: Manage Goals
                     
                     case 3: // Manage Milestones
