@@ -35,6 +35,7 @@ public class GoalDAO {
             "goalTargetDate	TEXT, " +
             "goalCompleteDate TEXT, " +
             "userID INTEGER, " +
+            "certID INTEGER, " +
             "FOREIGN KEY(certID) REFERENCES certification(certID) " +
             "FOREIGN KEY(userID) REFERENCES user(userID) " +
             ") STRICT";
