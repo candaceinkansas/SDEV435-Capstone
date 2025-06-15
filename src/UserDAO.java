@@ -26,10 +26,9 @@ public class UserDAO {
     // Method to create the user table if it does not exist
     private void createTable() throws SQLException {
         String sql = "CREATE TABLE IF NOT EXISTS user (" +
-            "userID	INTEGER NOT NULL UNIQUE, " +
+            "userID	INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "firstName	TEXT NOT NULL, " +
             "lastName TEXT NOT NULL, " +
-            "PRIMARY KEY(userID AUTOINCREMENT) " +
             ") STRICT";
 
 

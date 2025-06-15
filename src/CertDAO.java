@@ -86,6 +86,31 @@ public class CertDAO {
         return certs;
     }
 
+    // Method to retrieve a certification by user ID
+    public List<Cert> getCertByUserID(int userID) throws SQLException {        
+        List<Cert> certs = new ArrayList<>();
+        String sql = "SELECT * FROM certification WHERE userID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userID);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Cert cert = new Cert(
+                        //rs.getInt("certID"),
+                        rs.getString("certName"),
+                        rs.getString("certStatus"),
+                        rs.getString("certTargetDate"),
+                        rs.getString("certCompleteDate"),
+                        rs.getInt("userID")
+                    );
+                    certs.add(cert);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return certs; // Return the certifications found
+    }
+
 
     // Method to close the database connection
     public void close() {

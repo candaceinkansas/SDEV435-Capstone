@@ -114,9 +114,24 @@
 
                                 case 3: // View Certifications
                                     System.out.println(); // Print a blank line for readability
-                                    System.out.println("Certifications:");
-                                    for (Cert cert : certDAO.getAllCerts()) {
-                                        System.out.println("- " + cert.getCertName());
+
+                                    // Print all users to help the user select a user for certification management
+                                    for (User user : userDao.getAllUsers()) {
+                                        System.out.println("\t user number " + user.getUserID() + ": " + user.getFirstName() + " " + user.getLastName());
+                                    } 
+                                    
+                                    // Prompt the user to select a user to view certifications
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.println("Which user's certifications would you like to view? Please enter the user number: ");
+                                    int selectedUserID = scanner.nextInt();
+                                    scanner.nextLine(); // Consume newline
+                                    
+                                    // Print all certifications for the selected user
+                                    System.out.println(); // Print a blank line for readability
+                                    java.util.List<Cert> certs = certDAO.getCertByUserID(selectedUserID);
+                                    System.out.println("Certifications for User " + selectedUserID + ":");
+                                    for (Cert cert : certs) {
+                                        System.out.println("  Certification: " + cert.getCertName() + ", Status: " + cert.getCertStatus() + ", Target Date: " + cert.getCertTargetDate() + ", Completion Date: " + cert.getCertCompleteDate());
                                     }
                                     break;
                                     // End of case 3: View Certifications
