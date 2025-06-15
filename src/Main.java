@@ -24,12 +24,7 @@
             // Create a Scanner object to read user input
             Scanner scanner = new Scanner(System.in);
 
-            // Initialize flags to control the loops for the main menu and sub-menus
-            boolean continueOuter = true; // Flag to control the outer loop for the main menu
-            boolean continueCertInner = true; // Flag to control the inner loop for certification management
-            boolean continueGoalInner = true; // Flag to control the inner loop for goal management
-            boolean continueMileInner = true; // Flag to control the inner loop for milestone management
-            boolean continueReportInner = true; // Flag to control the inner loop for report generation
+
 
             // Check if the user table is empty and prompt to add a new user if it is
             if (userDao.getAllUsers().isEmpty()) {
@@ -49,6 +44,7 @@
             System.out.println("Welcome to the Skill Tracker Application!");
             
             // Outer loop for the main menu
+            boolean continueOuter = true; // create and initiate flag to control the outer loop for the main menu
             while (continueOuter) { // Outer loop for the main menu
 
                 System.out.println(); // Print a blank line for before presenting the menu
@@ -74,7 +70,7 @@
                 // Process the user's choice            
                 switch (choice) {
                     case 1: // Manage Certifications
-                    
+                        boolean continueCertInner = true; // Flag to control the inner loop for certification management
                         while (continueCertInner) { // Inner loop for certification management
                                                         
                             // Print the certification management menu
@@ -134,7 +130,8 @@
                     // End of case 1: Manage Certifications
 
                     case 2: // Manage Goals
-                        while (continueGoalInner) { // Inner loop for goal management
+                            boolean continueGoalInner = true; // create and initiate flag
+                            while (continueGoalInner) { // Inner loop for goal management
 
                             // Print the goal management menu
                             System.out.println(); // Print a blank line for readability
@@ -194,39 +191,105 @@
                     // End of case 2: Manage Goals
                     
                     case 3: // Manage Milestones
-                        System.out.println(); // Print a blank line for readability
-                        System.out.println("Manage Milestones");
-                        System.out.println("1. Add Milestone");
-                        System.out.println("2. View Milestones");
-                        System.out.println("3. Update Milestone");
-                        System.out.println("4. Return to Main Menu");
-                        System.out.print("Choose an option: ");
-                        int MileChoice = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
+                        boolean continueMileInner = true; // Flag to control the inner loop for milestone management
+                        while (continueMileInner) {
+
+                            System.out.println(); // Print a blank line for readability
+                            System.out.println("Manage Milestones");
+                            System.out.println("1. Add Milestone");
+                            System.out.println("2. View Milestones");
+                            System.out.println("3. Update Milestone");
+                            System.out.println("4. Return to Main Menu");
+                            System.out.print("Choose an option: ");
+                            int mileChoice = scanner.nextInt();
+                            scanner.nextLine(); // Consume newline
                         
-                        // Handle milestone management options here
-                        // (Implementation not yet coded)
-                        break;
-                    // End of case 3: Manage Milestones
+                            switch (mileChoice) {
+                                case 1: // Add Milestone
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.print("Enter milestone name: ");
+                                    String mileName = scanner.nextLine();
+                                    System.out.print("Enter milestone status (Not Started, In Progress, Completed): ");
+                                    String mileStatus = scanner.nextLine();
+                                    System.out.print("Enter target date (YYYY-MM-DD): ");
+                                    String mileTargetDate = scanner.nextLine();
+                                    System.out.print("Enter completion date (YYYY-MM-DD): ");
+                                    String mileCompleteDate = scanner.nextLine();
+                                    System.out.print("Enter user ID: ");
+                                    int UserID = scanner.nextInt();
+                                    scanner.nextLine(); // Consume newline
+
+                                    // Create a new Milestone object and add it to the database
+                                    mileDAO.addMile(new Mile(mileName, mileStatus, mileTargetDate, mileCompleteDate, UserID));
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.println("Process complete.  What's next?");
+                                    break;
+
+                                case 2: // Update Milestone Status
+                                    // Implementation not yet coded
+                                    break;
+                                
+                                case 3: // View Milestones
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.println("Milestones:");
+                                    for (Mile mile : mileDAO.getAllMiles()) {
+                                        System.out.println("- " + mile.getMileName());
+                                    }
+                                    break;
+
+                                case 4: // Return to Main Menu
+                                    continueMileInner = false; // allows exit of the milestone management loop
+                                    break;
+
+                                default: // Handle invalid choices
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.println("Invalid choice, please try again.");
+                            }
+                        } break; // check continueMileInner flag and either return to the main menu or continue with the milestone management loop
+                        // End of case 3: Manage Milestones
                     
                     case 4: // Generate Reports
-                        System.out.println(); // Print a blank line for readability
-                        System.out.println("Generate Reports");
-                        System.out.println("1. Generate Certification Report");
-                        System.out.println("2. Generate Goal Report");
-                        System.out.println("3. Generate Skill Report");
-                        System.out.print("Choose an option: ");
-                        int reportChoice = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
-                        
-                        // Handle report generation options here
-                        // (Implementation not yet coded)
-                        break;
+                        boolean continueReportInner = true; // Flag to control the inner loop for report generation
+                        while (continueReportInner) {
+                            System.out.println(); // Print a blank line for readability
+                            System.out.println("Generate Reports");
+                            System.out.println("1. Generate Certification Report");
+                            System.out.println("2. Generate Goal Report");
+                            System.out.println("3. Generate Skill Report");
+                            System.out.println("4. Return to Main Menu");
+                            System.out.print("Choose an option: ");
+                            int reportChoice = scanner.nextInt();
+                            scanner.nextLine(); // Consume newline
+                            switch (reportChoice) {
+                                case 1: // Generate Certification Report
+                                    // Implementation not yet coded
+                                    break;
+
+                                case 2: // Generate Goal Report
+                                    // Implementation not yet coded
+                                    break;
+
+                                case 3: // Generate Skill Report
+                                    // Implementation not yet coded
+                                    break;
+
+                                case 4: // Return to Main Menu
+                                    continueReportInner = false; // allows exit of the report generation loop
+                                    break;
+
+                                default: // Handle invalid choices
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.println("Invalid choice, please try again.");
+                            }
+                        } break;
                     // End of case 4: Generate Reports
+
+
+
 
                     case 5: // Exit the application
                         System.out.println(); // Print a blank line for readability
-                        // Close all DAO connections and the scanner before exiting
+                        // Close scanner and close all DAO connections before exiting
                         scanner.close();
                         dao.close();  /// DELETE THIS ONE WHEN DONE TESTING
                         certDAO.close();
