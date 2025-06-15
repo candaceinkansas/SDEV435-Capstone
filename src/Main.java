@@ -79,9 +79,8 @@
                             System.out.println("1. Add Certification");
                             System.out.println("2. Update Certification");
                             System.out.println("3. View Certifications");
-                            System.out.println("4. View Users");
-                            System.out.println("5. Return to Main Menu");
-                            System.out.print("Please enter your selection (1-5): ");
+                            System.out.println("4. Return to Main Menu");
+                            System.out.print("Please enter your selection (1-4): ");
                             int certChoice = scanner.nextInt();
                             scanner.nextLine(); // Consume newline
 
@@ -123,10 +122,10 @@
                                     // End of case 3: View Certifications
 
                                     // End of case 4: View Users
-                                case 5: // Return to Main Menu
+                                case 4: // Return to Main Menu
                                     continueCertInner = false; // allows exit of the certification management loop
                                     break;
-                                    // End of case 5: Return to Main Menu
+                                    // End of case 4: Return to Main Menu
                                 
                                 default: // Handle invalid choices
                                     System.out.println(); // Print a blank line for readability
