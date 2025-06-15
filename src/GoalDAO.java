@@ -29,13 +29,12 @@ public class GoalDAO {
     // Method to create the goal table if it does not exist
     private void createTable() throws SQLException {
         String sql = "CREATE TABLE IF NOT EXISTS goal (" +
-            "goalID	INTEGER NOT NULL UNIQUE, " +
+            "goalID	INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "goalName	TEXT NOT NULL, " +
             "goalStatus TEXT NOT NULL CHECK(goalStatus IN ('Not Started', 'In Progress', 'Completed')), " +
-            "goalTargetDate	INTEGER, " +
-            "goalCompleteDate INTEGER, " +
+            "goalTargetDate	TEXT, " +
+            "goalCompleteDate TEXT, " +
             "userID INTEGER, " +
-            "PRIMARY KEY(goalID AUTOINCREMENT), " +
             "FOREIGN KEY(certID) REFERENCES certification(certID) " +
             "FOREIGN KEY(userID) REFERENCES user(userID) " +
             ") STRICT";

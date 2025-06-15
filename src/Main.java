@@ -135,7 +135,40 @@
                     // End of case 1: Manage Certifications
 
                     case 2: // Manage Goals
-                        System.out.println(); // Print a blank line for readability
+                        while (continueGoalInner) { // Inner loop for goal management
+
+                            // Print the goal management menu
+                            System.out.println(); // Print a blank line for readability
+                            System.out.println("Manage Goals");
+                            System.out.println("1. Add Goal");
+                            System.out.println("2. Update Goal");
+                            System.out.println("3. View Goals");
+                            System.out.println("4. Return to Main Menu");
+                            System.out.print("Please enter your selection (1-4): ");
+                            int goalChoice = scanner.nextInt();
+                            scanner.nextLine(); // Consume newline
+
+                            // Handle goal management options here                            
+                            switch (goalChoice) {
+                                case 1: // Add Goal
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.print("Enter goal name: ");
+                                    String goalName = scanner.nextLine();
+                                    System.out.print("Enter goal description: ");
+                                    String goalDescription = scanner.nextLine();
+                                    System.out.print("Enter target date (YYYY-MM-DD): ");
+                                    String goalTargetDate = scanner.nextLine();
+                                    System.out.print("Enter completion date (YYYY-MM-DD): ");
+                                    String goalCompleteDate = scanner.nextLine();
+                                    System.out.print("Enter user ID: ");
+                                    int UserID = scanner.nextInt();
+                                    scanner.nextLine(); // Consume newline
+
+                                    // Create a new Goal object and add it to the database
+                                    goalDAO.addGoal(new Goal(goalName, goalDescription, goalTargetDate, goalCompleteDate, UserID));
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.println("Process complete.  What's next?");
+                                    break;System.out.println(); // Print a blank line for readability
                         System.out.println("Manage Goals");
                         System.out.println("1. Add Goal");
                         System.out.println("2. View Goals");
@@ -237,7 +270,7 @@
                 } // End of switch statement for main menu options
 
             } // End of outer loop for the main menu
-            
+
         } catch (Exception e) {
             System.err.println("An error occurred: " + e.getMessage());
             e.printStackTrace();
