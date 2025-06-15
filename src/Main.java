@@ -7,7 +7,7 @@
  */
 
  // Import necessary utilities
- // import java.util.List;   -----------------NOT USED
+ import java.sql.SQLException;
  import java.util.Scanner;
  
  // Main class to run the Skill Tracker application
@@ -343,7 +343,12 @@
                 } // End of switch statement for main menu options
 
             } // End of outer loop for the main menu
-
+            scanner.close(); // Close the scanner to prevent resource leaks
+            
+        } catch (SQLException e) {
+            System.err.println("A database error occurred: " + e.getMessage());
+            e.printStackTrace();
+            
         } catch (Exception e) {
             System.err.println("An error occurred: " + e.getMessage());
             e.printStackTrace();
