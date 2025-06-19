@@ -24,6 +24,7 @@ public class Cert {
         this.certStatus = certStatus; 
         this.certTargetDate = certTargetDate;
         this.certCompleteDate = certCompleteDate;
+        this.userID = userID;
     }
         public Cert(int certID, String certName, String certStatus, String certTargetDate, String certCompleteDate, int userID) {
             this(certName, certStatus, certTargetDate, certCompleteDate, userID);
