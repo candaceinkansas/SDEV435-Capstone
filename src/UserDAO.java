@@ -6,14 +6,18 @@
  * UserDAO.java
  */
 
- // Import necessary utilities
+/* This is a database access object (DAO) which is used to interact with the user table for my Skill Tracker application.
+ * It contains methods to create the user table, add a new user, retrieve all users, and close the database connection.
+ * This DAO is designed to work with a SQLite database and uses prepared statements to prevent SQL injection.
+ * It is not tied to a specific database, allowing it to be reused in any application that requires user management.
+ */
+
+// Import necessary utilities
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/* Constructor to initialize the DAO with the SQLite database
- * and create the initial table schema if it does not exist.
- */
+// Constructor to initialize the DAO with the SQLite database and create the initial table schema if it does not exist.
 public class UserDAO {
     private Connection conn;
 
@@ -83,5 +87,5 @@ public class UserDAO {
             }
         }
     }
-}
+} // End of UserDAO class
 

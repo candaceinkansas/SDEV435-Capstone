@@ -11,12 +11,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// Import Mile class if it exists in another package
-// import your.package.Mile;
-
-/* Constructor to initialize the DAO with the SQLite database
- * and create the initial table schema if it does not exist.
+/* This is a database access object (DAO) which is used to interact with the milestone table for my Skill Tracker application.
+ * It contains methods to create the milestone table, add a new milestone, retrieve all milestones, and close the database connection.
+ * This DAO is designed to work with a SQLite database and uses prepared statements to prevent SQL injection.
+ * It is not tied to a specific database, allowing it to be reused in any application that requires milestone management.
  */
+
+// Constructor to initialize the DAO with the SQLite database and create the initial table schema if it does not exist.
 public class MileDAO {
     private Connection conn;
 
@@ -86,7 +87,6 @@ public class MileDAO {
         return miles;
     }
 
-
     // Method to close the database connection
     public void close() {
         if (conn != null) {
@@ -97,5 +97,5 @@ public class MileDAO {
             }
         }
     }
-}
+} // End of MileDAO class
 

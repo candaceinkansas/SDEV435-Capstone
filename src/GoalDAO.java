@@ -6,17 +6,18 @@
  * GoalDAO.java
  */
 
-// Import necessary utilities
+/* This is a database access object (DAO) which is used to interact with the goal table for my Skill Tracker application.
+ * It contains methods to create the goal table, add a new goal, retrieve all goals, and close the database connection.
+ * This DAO is designed to work with a SQLite database and uses prepared statements to prevent SQL injection.
+ * It is not tied to a specific database, allowing it to be reused in any application that requires goal management.
+ */
+
+ // Import necessary utilities
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// Import Goal class if it exists in another package
-// import your.package.Goal;
-
-/* Constructor to initialize the DAO with the SQLite database
- * and create the initial table schema if it does not exist.
- */
+// Constructor to initialize the DAO with the SQLite database and create the initial table schema if it does not exist.
 public class GoalDAO {
     private Connection conn;
 
@@ -87,7 +88,6 @@ public class GoalDAO {
         return goals;
     }
 
-
     // Method to close the database connection
     public void close() {
         if (conn != null) {
@@ -98,5 +98,5 @@ public class GoalDAO {
             }
         }
     }
-}
+} // End of GoalDAO class
 

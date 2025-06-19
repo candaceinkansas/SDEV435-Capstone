@@ -6,9 +6,12 @@
  * User.java
  */
 
-// This class represents a user in the Skill Tracker application.
+// This class represents a user for my Skill Tracker application.
 // It contains properties such as id, first name, and last name.
-// It also includes a constructor to initialize these properties.
+// It also includes a full constructor to initialize these properties, along with individual getter and setter methods.
+
+// This reusable plain Java object (POJO) is not tied to a specific database or framework. It could be reused in any
+// application that requires a user model, whether data is loaded from a database, an API, JSON, or another source.
 
 public class User {
     private int userID;
@@ -28,17 +31,22 @@ public class User {
             this.lastName = lastName;
         }
 
-    // Getters and setters for each property
+    // Getters for each property
     public int getUserID() {
         return userID;
     }
-    
-    public String getFirstName() {
+        public String getFirstName() {
         return firstName;
     }
     public String getLastName() {
         return lastName;
     }
 
-
-}
+    // Setters for each property (except primary key) to allow modification after creation
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+} // End of User class
