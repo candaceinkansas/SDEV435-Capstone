@@ -23,14 +23,14 @@ public class Mile {
     private int goalID;
 
     // Constructor to initialize the Milestone properties
-    public Mile(String mileName, String mileStatus, String mileTargetDate, String mileCompleteDate, int userID) {
+    public Mile(String mileName, String mileStatus, String mileTargetDate, String mileCompleteDate, int goalID) {
         this.mileName = mileName;
         this.mileStatus = mileStatus; 
         this.mileTargetDate = mileTargetDate;
         this.mileCompleteDate = mileCompleteDate;
     }
-    public Mile(int mileID, String mileName, String mileStatus, String mileTargetDate, String mileCompleteDate, int userID) {
-        this(mileName, mileStatus, mileTargetDate, mileCompleteDate, userID);
+    public Mile(int mileID, String mileName, String mileStatus, String mileTargetDate, String mileCompleteDate, int goalID) {
+        this(mileName, mileStatus, mileTargetDate, mileCompleteDate, goalID);
         this.mileID = mileID;
         this.goalID = goalID;
     }
