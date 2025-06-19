@@ -53,8 +53,9 @@
                 System.out.println("2. Manage Goals");
                 System.out.println("3. Manage Milestones");
                 System.out.println("4. Generate Reports");
-                System.out.println("5. View User Information");
-                System.out.println("6. Exit");
+                System.out.println("5. Add New User");
+                System.out.println("6. List All Users");
+                System.out.println("7. Exit");
 
                 System.out.print("Please choose an option: ");
                 
@@ -298,14 +299,26 @@
                         } break;
                         // End of case 4: Generate Reports
 
-                    case 5: // View User Information
+                    case 5: // Add New User
+                        System.out.println(); // Print a blank line for readability
+                        System.out.print("Enter first name: ");
+                        String firstName = scanner.nextLine();
+                        System.out.print("Enter last name: ");
+                        String lastName = scanner.nextLine();
+                        userDao.addUser(new User(firstName, lastName));
+                        System.out.println(); // Print a blank line for readability
+                        System.out.println("Process complete.  What's next?");
+                        break;
+                    
+                    case 6: // View User Information
                         System.out.println(); // Print a blank line for readability
                         System.out.println("User Information:");
                         for (User user : userDao.getAllUsers()) {
                             System.out.println("\t user number " + user.getUserID() + ": " + user.getFirstName() + " " + user.getLastName());
                         } break;
-                        // End of case 5: View User Information
-                    case 6: // Exit the application
+                        // End of case 6: View User Information
+
+                    case 7: // Exit the application
                         System.out.println(); // Print a blank line for readability
                         // Close scanner and close all DAO connections before exiting
                         scanner.close();
