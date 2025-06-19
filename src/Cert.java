@@ -6,9 +6,12 @@
  * Cert.java
  */
 
-// This class represents a certification in the Skill Tracker application.
+// This class represents a certification for my Skill Tracker application.
 // It contains properties such as id, name, status, target date, compete date, and userID.
-// It also includes a constructor to initialize these properties.
+// It contains a full constructor to initialize all properties, along with individual getter and setter methods.
+
+// This reusable plain Java object (POJO) is not tied to a specific database or framework. It could be reused in any
+// application that requires a certification model, whether data is loaded from a database, an API, JSON, or any other source.
 
 public class Cert {
     private int certID;
@@ -32,7 +35,7 @@ public class Cert {
             //this.userID = userID;
         }
 
-    // Getters and setters for each property
+    // Getters for each property
     public int getCertID() {
         return certID;
     }
@@ -55,5 +58,25 @@ public class Cert {
     public int getUserID() {
         return userID;
     }
+
+    // Setters for each property (except primary and foreign keys) to allow modification after creation
+    public void setCertName(String certName) {
+        this.certName = certName;
+    }
+
+    public void setCertStatus(String certStatus) {
+        this.certStatus = certStatus;
+    }
+
+    public void setCertTargetDate(String certTargetDate) {
+        this.certTargetDate = certTargetDate;
+    }
+
+    public void setCertCompleteDate(String certCompleteDate) {
+        this.certCompleteDate = certCompleteDate;
+    }
+
+
+
 
 }
