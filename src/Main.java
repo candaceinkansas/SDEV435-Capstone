@@ -330,37 +330,8 @@
                         System.out.println(); // Print a blank line before returning to system prompt 
                         System.exit(0);
                         return;
-                        // End of case 6: Exit the application
+                        // End of case 7: Exit the application
 
-
-
-                    // case 10: // Add a new skill
-                    //     System.out.println(); // Print a blank line for readability
-                    //     System.out.print("Enter skill name: ");
-                    //     String skillName = scanner.nextLine();
-                    //     System.out.print("Enter skill proficiency: ");
-                    //     String proficiency = scanner.nextLine();
-                    //     System.out.print("Enter skill category: ");
-                    //     String category = scanner.nextLine();
-                    //     System.out.print("Enter last used date (YYYY-MM-DD): ");
-                    //     String lastUsed = scanner.nextLine();
-        
-                    //     // Create a new Skill object and add it to the database
-                    //     dao.addSkill(new Skill(skillName, proficiency, category, lastUsed));
-                    //     System.out.println(); // Print a blank line for readability
-                    //     System.out.println("Process complete. What next?");
-                    //     break;
-                    // case 12: // View all skills
-                    //     System.out.println(); // Print a blank line for readability
-                    //     System.out.println("Skills:");
-                    //     for (Skill skill : dao.getAllSkills()) {
-                    //         System.out.println("- " + skill.getName());
-                    //         }
-                    //     break;
-
-                    
-                    
-                    
                     default: // Handle invalid choices
                         System.out.println(); // Print a blank line for readability
                         System.out.println("Invalid choice, please try again.");       
