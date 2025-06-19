@@ -36,7 +36,7 @@
                 
                 // Create a new User object and add it to the database
                 userDao.addUser(new User(firstName, lastName));
-                System.out.println("User added successfully.");
+                System.out.println("Nice to meet you, " + firstName + "! You have been added to the database.");
             }
 
             // Print the greeting and menu options
