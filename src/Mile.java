@@ -20,7 +20,7 @@ public class Mile {
     private String mileStatus;
     private String mileTargetDate;
     private String mileCompleteDate;
-    private int userID;
+    private int goalID;
 
     // Constructor to initialize the Milestone properties
     public Mile(String mileName, String mileStatus, String mileTargetDate, String mileCompleteDate, int userID) {
@@ -32,7 +32,7 @@ public class Mile {
     public Mile(int mileID, String mileName, String mileStatus, String mileTargetDate, String mileCompleteDate, int userID) {
         this(mileName, mileStatus, mileTargetDate, mileCompleteDate, userID);
         this.mileID = mileID;
-        this.userID = userID;
+        this.goalID = goalID;
     }
 
     // Getters for each property
@@ -51,8 +51,8 @@ public class Mile {
     public String getMileCompleteDate() {
         return mileCompleteDate;
     }
-    public int getUserID() {
-        return userID;
+    public int getGoalID() {
+        return goalID;
     }
     // Setters for each property (except primary and foreign keys) to allow modification after creation
     public void setMileName(String mileName) {
@@ -67,5 +67,5 @@ public class Mile {
     public void setMileCompleteDate(String mileCompleteDate) {
         this.mileCompleteDate = mileCompleteDate;
     }
-    
+
 } // end of Mile.java

@@ -35,9 +35,9 @@ public class MileDAO {
             "mileStatus TEXT NOT NULL CHECK(mileStatus IN ('Not Started', 'In Progress', 'Completed')), " +
             "mileTargetDate	INTEGER, " +
             "mileCompleteDate INTEGER, " +
-            "userID INTEGER, " +
+            "goalID INTEGER, " +
             "PRIMARY KEY(mileID AUTOINCREMENT), " +
-            "FOREIGN KEY(userID) REFERENCES user(userID) " +
+            "FOREIGN KEY(goalID) REFERENCES goal(goalID) " +
             ") STRICT";
 
 
@@ -57,7 +57,7 @@ public class MileDAO {
             pstmt.setString(2, mile.getMileStatus());
             pstmt.setString(3, mile.getMileTargetDate());
             pstmt.setString(4, mile.getMileCompleteDate());
-            pstmt.setInt(5, mile.getUserID());
+            pstmt.setInt(5, mile.getGoalID());
             pstmt.executeUpdate();
         } catch (SQLException e) {  // Handle SQL exceptions, such as duplicate entries
             e.printStackTrace();
@@ -77,7 +77,7 @@ public class MileDAO {
                     rs.getString("mileStatus"),
                     rs.getString("mileTargetDate"),
                     rs.getString("mileCompleteDate"),
-                    rs.getInt("userID")
+                    rs.getInt("goalID")
                 );
                 miles.add(mile);
             }
