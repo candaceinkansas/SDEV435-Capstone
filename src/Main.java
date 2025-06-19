@@ -17,7 +17,6 @@
             // Initialize the DAO for all tables within the SQLite database
             // If the database does not exist, it will be created
             // If the tables do not exist, they will be created
-            SkillDAO dao = new SkillDAO("skills_tracker.db");   // DELETE THIS ONE WHEN DONE TESTING
             UserDAO userDao = new UserDAO("skills_tracker.db");
             CertDAO certDAO = new CertDAO("skills_tracker.db");
             GoalDAO goalDAO = new GoalDAO("skills_tracker.db");
@@ -55,13 +54,6 @@
                 System.out.println("4. Generate Reports");
                 System.out.println("5. View User Information");
                 System.out.println("6. Exit");
-
-
-                // DELETE THESE AFTER TESTING
-                System.out.println("10. Add a new skill");
-                System.out.println("12. View all skills");
-
-                
 
                 System.out.print("Please choose an option: ");
                 
@@ -218,8 +210,8 @@
                             System.out.println(); // Print a blank line for readability
                             System.out.println("Manage Milestones");
                             System.out.println("1. Add Milestone");
-                            System.out.println("2. View Milestones");
-                            System.out.println("3. Update Milestone");
+                            System.out.println("2. Update Milestones");
+                            System.out.println("3. View Milestone");
                             System.out.println("4. Return to Main Menu");
                             System.out.print("Choose an option: ");
                             int mileChoice = scanner.nextInt();
@@ -316,7 +308,6 @@
                         System.out.println(); // Print a blank line for readability
                         // Close scanner and close all DAO connections before exiting
                         scanner.close();
-                        dao.close();  /// DELETE THIS ONE WHEN DONE TESTING
                         certDAO.close();
                         userDao.close();
                         goalDAO.close();
@@ -329,29 +320,29 @@
 
 
 
-                    case 10: // Add a new skill
-                        System.out.println(); // Print a blank line for readability
-                        System.out.print("Enter skill name: ");
-                        String skillName = scanner.nextLine();
-                        System.out.print("Enter skill proficiency: ");
-                        String proficiency = scanner.nextLine();
-                        System.out.print("Enter skill category: ");
-                        String category = scanner.nextLine();
-                        System.out.print("Enter last used date (YYYY-MM-DD): ");
-                        String lastUsed = scanner.nextLine();
+                    // case 10: // Add a new skill
+                    //     System.out.println(); // Print a blank line for readability
+                    //     System.out.print("Enter skill name: ");
+                    //     String skillName = scanner.nextLine();
+                    //     System.out.print("Enter skill proficiency: ");
+                    //     String proficiency = scanner.nextLine();
+                    //     System.out.print("Enter skill category: ");
+                    //     String category = scanner.nextLine();
+                    //     System.out.print("Enter last used date (YYYY-MM-DD): ");
+                    //     String lastUsed = scanner.nextLine();
         
-                        // Create a new Skill object and add it to the database
-                        dao.addSkill(new Skill(skillName, proficiency, category, lastUsed));
-                        System.out.println(); // Print a blank line for readability
-                        System.out.println("Process complete. What next?");
-                        break;
-                    case 12: // View all skills
-                        System.out.println(); // Print a blank line for readability
-                        System.out.println("Skills:");
-                        for (Skill skill : dao.getAllSkills()) {
-                            System.out.println("- " + skill.getName());
-                            }
-                        break;
+                    //     // Create a new Skill object and add it to the database
+                    //     dao.addSkill(new Skill(skillName, proficiency, category, lastUsed));
+                    //     System.out.println(); // Print a blank line for readability
+                    //     System.out.println("Process complete. What next?");
+                    //     break;
+                    // case 12: // View all skills
+                    //     System.out.println(); // Print a blank line for readability
+                    //     System.out.println("Skills:");
+                    //     for (Skill skill : dao.getAllSkills()) {
+                    //         System.out.println("- " + skill.getName());
+                    //         }
+                    //     break;
 
                     
                     
