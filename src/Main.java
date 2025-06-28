@@ -176,12 +176,19 @@
                                     System.out.print("Is this goal tied to a certification? (Y/N): ");
                                     scanner.nextLine(); // Consume newline
                                     String certResponse = scanner.nextLine().trim().toUpperCase();
-                                        // If the goal is tied to a certification, prompt for the certification ID
+                                    // Initialize CertID to null, which will be used if the goal is not tied to a certification
                                         Integer CertID = null;
+                                        // If the goal is tied to a certification, prompt for the certification ID
                                         if (certResponse.equals("Y")) {
+                                            // Print all certifications for selected user to help the user select a cert for goal management
+                                            System.out.println(); // Print a blank line for readability
+                                            java.util.List<Cert> certs = certDAO.getCertByUserID(UserID);
+                                            System.out.println("Certifications for User " + UserID + ":");
+                                            for (Cert cert : certs) {
+                                                System.out.println("  Certification " + cert.getCertID() + ": " + cert.getCertName() + ", Status: " + cert.getCertStatus() + ", Target Date: " + cert.getCertTargetDate() + ", Completion Date: " + cert.getCertCompleteDate());
+                                            }
                                             System.out.print("Enter certification ID: ");
                                             CertID = scanner.nextInt();
-                                            scanner.nextLine(); // Consume newline
                                         }
 
                                     // Create a new Goal object and add it to the database
