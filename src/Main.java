@@ -171,8 +171,18 @@
                                     String goalTargetDate = scanner.nextLine();
                                     System.out.print("Enter completion date (YYYY-MM-DD): ");
                                     String goalCompleteDate = scanner.nextLine();
-                                    System.out.print("Enter user ID: ");
-                                    int UserID = scanner.nextInt();
+                                    
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.print("Which user has this goal?\n");
+                                    // Print all users to help the user select a user for certification management
+                                        for (User user : userDao.getAllUsers()) {
+                                            System.out.println("\t user number " + user.getUserID() + ": " + user.getFirstName() + " " + user.getLastName());
+                                        } 
+                                        // Prompt the user to select a user to view certifications
+                                        System.out.println("Please enter the user number: ");
+                                        int selectedUserID = scanner.nextInt();
+                                    
+                                    System.out.println(); // Print a blank line for readability
                                     System.out.print("Is this goal tied to a certification? (Y/N): ");
                                     scanner.nextLine(); // Consume newline
                                     String certResponse = scanner.nextLine().trim().toUpperCase();
@@ -182,17 +192,16 @@
                                         if (certResponse.equals("Y")) {
                                             // Print all certifications for selected user to help the user select a cert for goal management
                                             System.out.println(); // Print a blank line for readability
-                                            java.util.List<Cert> certs = certDAO.getCertByUserID(UserID);
-                                            System.out.println("Certifications for User " + UserID + ":");
+                                            java.util.List<Cert> certs = certDAO.getCertByUserID(selectedUserID);
+                                            System.out.println("Certifications for User " + selectedUserID + ":");
                                             for (Cert cert : certs) {
                                                 System.out.println("  Certification " + cert.getCertID() + ": " + cert.getCertName() + ", Status: " + cert.getCertStatus() + ", Target Date: " + cert.getCertTargetDate() + ", Completion Date: " + cert.getCertCompleteDate());
                                             }
                                             System.out.print("Enter certification ID: ");
                                             CertID = scanner.nextInt();
                                         }
-
                                     // Create a new Goal object and add it to the database
-                                    goalDAO.addGoal(new Goal(goalName, goalStatus, goalTargetDate, goalCompleteDate, UserID, CertID));
+                                    goalDAO.addGoal(new Goal(goalName, goalStatus, goalTargetDate, goalCompleteDate, selectedUserID, CertID));
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Process complete.  What's next?");
                                     break;
