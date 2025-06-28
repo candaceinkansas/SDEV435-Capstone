@@ -51,7 +51,7 @@ public class MileDAO {
     // Method to add a new milestone to the database
     // Uses a prepared statement to prevent SQL injection and handle null values
     public void addMile(Mile mile) throws SQLException {
-        String sql = "INSERT INTO milestone (mileName, mileStatus, mileTargetDate, mileCompleteDate, userID) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO milestone (mileName, mileStatus, mileTargetDate, mileCompleteDate, goalID) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, mile.getMileName());
             pstmt.setString(2, mile.getMileStatus());

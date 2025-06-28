@@ -28,6 +28,7 @@ public class Mile {
         this.mileStatus = mileStatus; 
         this.mileTargetDate = mileTargetDate;
         this.mileCompleteDate = mileCompleteDate;
+        this.goalID = goalID;
     }
     public Mile(int mileID, String mileName, String mileStatus, String mileTargetDate, String mileCompleteDate, int goalID) {
         this(mileName, mileStatus, mileTargetDate, mileCompleteDate, goalID);

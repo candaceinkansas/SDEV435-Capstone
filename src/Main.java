@@ -244,7 +244,7 @@
                                     scanner.nextLine(); // Consume newline
 
                                     // Create a new Milestone object and add it to the database
-                                    mileDAO.addMile(new Mile(mileName, mileStatus, mileTargetDate, mileCompleteDate, UserID));
+                                    mileDAO.addMile(new Mile(mileName, mileStatus, mileTargetDate, mileCompleteDate, goalID));
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Process complete.  What's next?");
                                     break;

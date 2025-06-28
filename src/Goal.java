@@ -49,10 +49,7 @@ public class Goal {
         this.certID = certID;
 }
 
-    public Goal(int int1, String string, String string2, String string3, String string4, int int2, String string5,
-            String string6, int int3) {
-        //TODO Auto-generated constructor stub
-    }
+
     // Getters for each property
     public int getGoalID() {
         return goalID;
