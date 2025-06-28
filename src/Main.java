@@ -239,8 +239,8 @@
                                     String mileTargetDate = scanner.nextLine();
                                     System.out.print("Enter completion date (YYYY-MM-DD): ");
                                     String mileCompleteDate = scanner.nextLine();
-                                    System.out.print("Enter user ID: ");
-                                    int UserID = scanner.nextInt();
+                                    System.out.print("Enter goal ID: ");
+                                    int goalID = scanner.nextInt();
                                     scanner.nextLine(); // Consume newline
 
                                     // Create a new Milestone object and add it to the database
