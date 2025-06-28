@@ -96,7 +96,7 @@ public class CertDAO {
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     Cert cert = new Cert(
-                        //rs.getInt("certID"),
+                        rs.getInt("certID"),
                         rs.getString("certName"),
                         rs.getString("certStatus"),
                         rs.getString("certTargetDate"),

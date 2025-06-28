@@ -52,13 +52,18 @@ public class GoalDAO {
     // Method to add a new goal to the database
     // Uses a prepared statement to prevent SQL injection and handle null values
     public void addGoal(Goal goal) throws SQLException {
-        String sql = "INSERT INTO goal (goalName, goalStatus, goalTargetDate, goalCompleteDate, userID) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO goal (goalName, goalStatus, goalTargetDate, goalCompleteDate, userID, certID) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, goal.getGoalName());
             pstmt.setString(2, goal.getGoalStatus());
             pstmt.setString(3, goal.getGoalTargetDate());
             pstmt.setString(4, goal.getGoalCompleteDate());
             pstmt.setInt(5, goal.getUserID());
+            if (goal.getCertID() != null) {
+                pstmt.setInt(6, goal.getCertID());
+            } else {
+                pstmt.setNull(6, Types.INTEGER);
+            }
             pstmt.executeUpdate();
         } catch (SQLException e) {  // Handle SQL exceptions, such as duplicate entries
             e.printStackTrace();

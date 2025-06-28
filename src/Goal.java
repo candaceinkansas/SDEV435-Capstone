@@ -21,7 +21,7 @@ public class Goal {
     private String goalTargetDate;
     private String goalCompleteDate;
     private int userID;
-    private int certID;
+    private Integer certID;
 
     // Constructor to initialize the Goal properties
     public Goal(String goalName, String goalStatus, String goalTargetDate, String goalCompleteDate, int userID) {
@@ -40,6 +40,14 @@ public class Goal {
         this.goalID = goalID;
         this.certID = certID;
     }
+    public Goal(String goalName, String goalStatus, String goalTargetDate, String goalCompleteDate, int userID, Integer certID) {
+        this.goalName = goalName;
+        this.goalStatus = goalStatus;
+        this.goalTargetDate = goalTargetDate;
+        this.goalCompleteDate = goalCompleteDate;
+        this.userID = userID;
+        this.certID = certID;
+}
 
     // Getters for each property
     public int getGoalID() {
@@ -60,7 +68,7 @@ public class Goal {
     public int getUserID() {
         return userID;
     }
-    public int getCertID() {
+    public Integer getCertID() {
         return certID;
     }
 

@@ -126,7 +126,7 @@
                                     java.util.List<Cert> certs = certDAO.getCertByUserID(selectedUserID);
                                     System.out.println("Certifications for User " + selectedUserID + ":");
                                     for (Cert cert : certs) {
-                                        System.out.println("  Certification: " + cert.getCertName() + ", Status: " + cert.getCertStatus() + ", Target Date: " + cert.getCertTargetDate() + ", Completion Date: " + cert.getCertCompleteDate());
+                                        System.out.println("  Certification " + cert.getCertID() + ": " + cert.getCertName() + ", Status: " + cert.getCertStatus() + ", Target Date: " + cert.getCertTargetDate() + ", Completion Date: " + cert.getCertCompleteDate());
                                     }
                                     break;
                                     // End of case 3: View Certifications
@@ -173,10 +173,19 @@
                                     String goalCompleteDate = scanner.nextLine();
                                     System.out.print("Enter user ID: ");
                                     int UserID = scanner.nextInt();
+                                    System.out.print("Is this goal tied to a certification? (Y/N): ");
                                     scanner.nextLine(); // Consume newline
+                                    String certResponse = scanner.nextLine().trim().toUpperCase();
+                                        // If the goal is tied to a certification, prompt for the certification ID
+                                        Integer CertID = null;
+                                        if (certResponse.equals("Y")) {
+                                            System.out.print("Enter certification ID: ");
+                                            CertID = scanner.nextInt();
+                                            scanner.nextLine(); // Consume newline
+                                        }
 
                                     // Create a new Goal object and add it to the database
-                                    goalDAO.addGoal(new Goal(goalName, goalStatus, goalTargetDate, goalCompleteDate, UserID));
+                                    goalDAO.addGoal(new Goal(goalName, goalStatus, goalTargetDate, goalCompleteDate, UserID, CertID));
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Process complete.  What's next?");
                                     break;
