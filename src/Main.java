@@ -204,23 +204,26 @@
                                     goalDAO.addGoal(new Goal(goalName, goalStatus, goalTargetDate, goalCompleteDate, selectedUserID, CertID));
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Process complete.  What's next?");
-                                    break;
+                                    break;  // End of case 1: Add Goal
 
                                 case 2: // Update Goal Status
-                                    // Implementation not yet coded
-                                    break;
-                                
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.print("Update functionality not yet coded"); // Print a blank line for readability
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.println("Process complete.  What's next?");
+                                    break; // End of case 2: Update Goal Status
+
                                 case 3: // View Goals
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Goals:");
                                     for (Goal goal : goalDAO.getAllGoals()) {
                                         System.out.println("  User " + goal.getUserID() + " " + " Goal " + goal.getGoalID() + ": " + goal.getGoalName() + ", Status: " + goal.getGoalStatus() + ", Target Date: " + goal.getGoalTargetDate() + ", Completion Date: " + goal.getGoalCompleteDate());
                                     }
-                                    break;
+                                    break; // End of case 3: View Goals
 
                                 case 4: // Return to Main Menu
                                     continueGoalInner = false; // allows exit of the goal management loop
-                                    break;
+                                    break; // End of case 4: Return to Main Menu
 
                                 default: // Handle invalid choices
                                     System.out.println(); // Print a blank line for readability
