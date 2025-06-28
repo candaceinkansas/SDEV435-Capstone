@@ -198,7 +198,7 @@
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Goals:");
                                     for (Goal goal : goalDAO.getAllGoals()) {
-                                        System.out.println("- " + goal.getGoalName());
+                                        System.out.println("  User " + goal.getUserID() + " " + " Goal " + goal.getGoalID() + ": " + goal.getGoalName() + ", Status: " + goal.getGoalStatus() + ", Target Date: " + goal.getGoalTargetDate() + ", Completion Date: " + goal.getGoalCompleteDate());
                                     }
                                     break;
 
