@@ -59,8 +59,8 @@
 
                 System.out.print("Please choose an option: ");
                 
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
+                int choice = scanner.nextInt(); //reads integer, leaves newline in the buffer
+                scanner.nextLine(); // consumes the leftover newline character
 
                 // Process the user's choice            
                 switch (choice) {
@@ -77,7 +77,7 @@
                             System.out.println("4. Return to Main Menu");
                             System.out.print("Please enter your selection (1-4): ");
                             int certChoice = scanner.nextInt();
-                            scanner.nextLine(); // Consume newline
+                            scanner.nextLine(); // consumes the leftover newline character
 
                             // Handle certification management options here                            
                             switch (certChoice) {
@@ -93,7 +93,7 @@
                                     String certCompleteDate = scanner.nextLine();
                                     System.out.print("Enter user number: ");
                                     int userID = scanner.nextInt();
-                                    scanner.nextLine(); // Consume newline
+                                    scanner.nextLine(); // consumes the leftover newline character
 
                                     // Create a new Certification object and add it to the database
                                     certDAO.addCert(new Cert(certName, certStatus, certTargetDate, certCompleteDate, userID));
@@ -119,7 +119,7 @@
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Which user's certifications would you like to view? Please enter the user number: ");
                                     int selectedUserID = scanner.nextInt();
-                                    scanner.nextLine(); // Consume newline
+                                    scanner.nextLine(); // consumes the leftover newline character
                                     
                                     // Print all certifications for the selected user
                                     System.out.println(); // Print a blank line for readability
@@ -157,7 +157,7 @@
                             System.out.println("4. Return to Main Menu");
                             System.out.print("Please enter your selection (1-4): ");
                             int goalChoice = scanner.nextInt();
-                            scanner.nextLine(); // Consume newline
+                            scanner.nextLine(); // consumes the leftover newline character
 
                             // Handle goal management options here                            
                             switch (goalChoice) {
@@ -181,24 +181,25 @@
                                         // Prompt the user to select a user to view certifications
                                         System.out.println("Please enter the user number: ");
                                         int selectedUserID = scanner.nextInt();
+                                        scanner.nextLine(); // consumes the leftover newline character
                                     
                                     System.out.println(); // Print a blank line for readability
                                     System.out.print("Is this goal tied to a certification? (Y/N): ");
-                                    scanner.nextLine(); // Consume newline
-                                    String certResponse = scanner.nextLine().trim().toUpperCase();
+                                    String certResponse = scanner.next().trim().toUpperCase(); // Read the input and convert it to uppercase (expecting y or n)
+                                    
                                     // Initialize CertID to null, which will be used if the goal is not tied to a certification
                                         Integer CertID = null;
-                                        // If the goal is tied to a certification, prompt for the certification ID
                                         if (certResponse.equals("Y")) {
                                             // Print all certifications for selected user to help the user select a cert for goal management
                                             System.out.println(); // Print a blank line for readability
                                             java.util.List<Cert> certs = certDAO.getCertByUserID(selectedUserID);
                                             System.out.println("Certifications for User " + selectedUserID + ":");
-                                            for (Cert cert : certs) {
-                                                System.out.println("  Certification " + cert.getCertID() + ": " + cert.getCertName() + ", Status: " + cert.getCertStatus() + ", Target Date: " + cert.getCertTargetDate() + ", Completion Date: " + cert.getCertCompleteDate());
-                                            }
+                                                for (Cert cert : certs) {
+                                                    System.out.println("  Certification " + cert.getCertID() + ": " + cert.getCertName() + ", Status: " + cert.getCertStatus() + ", Target Date: " + cert.getCertTargetDate() + ", Completion Date: " + cert.getCertCompleteDate());
+                                                }
                                             System.out.print("Enter certification ID: ");
                                             CertID = scanner.nextInt();
+                                            scanner.nextLine(); // Consume the newline character left by nextInt()
                                         }
                                     // Create a new Goal object and add it to the database
                                     goalDAO.addGoal(new Goal(goalName, goalStatus, goalTargetDate, goalCompleteDate, selectedUserID, CertID));
