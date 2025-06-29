@@ -93,6 +93,30 @@ public class GoalDAO {
         return goals;
     }
 
+    // Method to retrieve all goals from the database; prints goals ordered by user's last name and grouped by certID
+    public void getGoalsWithCertID() throws SQLException {
+        String sql = "SELECT g.UserID, u.FirstName, u.LastName, g.GoalName, g.GoalStatus, g.CertID, g.GoalTargetDate, " +
+                "g.GoalCompleteDate FROM goal g INNER JOIN user u ON g.UserID = u.UserID ORDER BY u.LastName, g.CertID";
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String certID = rs.getString("certID"); // convert certID to String to handle null values for INTEGER field (if left as int, null values will return as "0")
+                String firstName = rs.getString("FirstName");
+                String lastName = rs.getString("LastName");
+                String goalName = rs.getString("GoalName");
+                String goalStatus = rs.getString("GoalStatus");
+                String goalTargetDate = rs.getString("GoalTargetDate");
+                String goalCompleteDate = rs.getString("GoalCompleteDate");
+
+                System.out.println("   User: " + firstName + " " + lastName + ", Cert: " + certID + ", Goal: " + goalName + ", Status: " 
+                + goalStatus + ", Target Date: " + goalTargetDate + ", Completion Date: " + goalCompleteDate);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+       
+    }
+
     // Method to close the database connection
     public void close() {
         if (conn != null) {

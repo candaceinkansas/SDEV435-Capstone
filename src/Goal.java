@@ -86,5 +86,11 @@ public class Goal {
     public void setGoalCompleteDate(String goalCompleteDate) {
         this.goalCompleteDate = goalCompleteDate;
     }
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+    public void setCertID(Integer certID) {
+        this.certID = certID;
+    }
 
 } // End of Goal.java

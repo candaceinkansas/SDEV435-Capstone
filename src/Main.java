@@ -218,8 +218,26 @@
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Goals:");
                                     for (Goal goal : goalDAO.getAllGoals()) {
-                                        System.out.println("  User " + goal.getUserID() + " " + " Goal " + goal.getGoalID() + ": " + goal.getGoalName() + ", Status: " + goal.getGoalStatus() + ", Target Date: " + goal.getGoalTargetDate() + ", Completion Date: " + goal.getGoalCompleteDate());
+                                        System.out.println("  User " + goal.getUserID() + " " + " Goal " + goal.getGoalID() + ": " + goal.getGoalName() +
+                                        ", Status: " + goal.getGoalStatus() + ", Target Date: " + goal.getGoalTargetDate() + ", Completion Date: " + goal.getGoalCompleteDate());
                                     }
+                                    
+                                    
+/* Adding logic to view goals by user ID and certification ID
+ * If this works, it will replace the above for loop
+ */
+                                    System.out.println(); // Print a blank line for readability
+                                    // Print all goals for all users
+                                    System.out.println("Goals for all users:");
+                                    goalDAO.getGoalsWithCertID(); // Call the method to retrieve goals by user ID and certification ID
+                                    // for (Goal goal : goalDAO.getGoalsByUserIDAndCertID()) {
+                                    //     System.out.println("  User " + goal.getUserID() + ", CertID: " + goal.getCertID() + ", Goal: " + goal.getGoalID() + ": " + goal.getGoalName() + ", Status: " + goal.getGoalStatus() + ", Target Date: " + goal.getGoalTargetDate() + ", Completion Date: " + goal.getGoalCompleteDate());
+                                    // }
+/*
+ * Delete above section if it doesn't work.
+ * If it does work, consider replacing the original for loop with the above code. Or, have 2 options for returning goals: standalone goals or goals by user, including certIDs.
+ */
+
                                     break; // End of case 3: View Goals
 
                                 case 4: // Return to Main Menu
