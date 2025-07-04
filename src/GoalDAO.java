@@ -99,18 +99,25 @@ public class GoalDAO {
                 "g.GoalCompleteDate FROM goal g INNER JOIN user u ON g.UserID = u.UserID ORDER BY u.LastName, g.CertID";
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(sql);
+
+            // Print the header for the goal details
+            System.out.printf("------------------------------------------------------------\n");
+            System.out.printf("Goals ordered by user's last name and grouped by certID:\n");
+            System.out.printf("------------------------------------------------------------\n");
+            System.out.printf("%-20s\t%-20s\t%-50s\t%-15s\n", "USER", "CERTIFICATE", "GOAL NAME", "GOAL STATUS");
+
+            //iterate through the result set and print each goal's details
             while (rs.next()) {
                 String certID = rs.getString("certID"); // convert certID to String to handle null values for INTEGER field (if left as int, null values will return as "0")
                     if (certID == null) {
-                        certID = "Standalone Goal not tied to a Certification";
+                        certID = "Standalone Goal";
                     }
                 String firstName = rs.getString("FirstName");
                 String lastName = rs.getString("LastName");
                 String goalName = rs.getString("GoalName");
                 String goalStatus = rs.getString("GoalStatus");
                 // Print the goal details
-                System.out.println("   User: " + firstName + " " + lastName + ", Cert: " + certID + ", Goal: " + goalName + ", Goal Status: " 
-                + goalStatus);
+                System.out.printf("%-20s\t%-20s\t%-50s\t%-15s\n", firstName + " " + lastName, certID, goalName, goalStatus);
             }
         } catch (SQLException e) {
             e.printStackTrace();
