@@ -101,15 +101,16 @@ public class GoalDAO {
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 String certID = rs.getString("certID"); // convert certID to String to handle null values for INTEGER field (if left as int, null values will return as "0")
+                    if (certID == null) {
+                        certID = "Standalone Goal not tied to a Certification";
+                    }
                 String firstName = rs.getString("FirstName");
                 String lastName = rs.getString("LastName");
                 String goalName = rs.getString("GoalName");
                 String goalStatus = rs.getString("GoalStatus");
-                String goalTargetDate = rs.getString("GoalTargetDate");
-                String goalCompleteDate = rs.getString("GoalCompleteDate");
-
-                System.out.println("   User: " + firstName + " " + lastName + ", Cert: " + certID + ", Goal: " + goalName + ", Status: " 
-                + goalStatus + ", Target Date: " + goalTargetDate + ", Completion Date: " + goalCompleteDate);
+                // Print the goal details
+                System.out.println("   User: " + firstName + " " + lastName + ", Cert: " + certID + ", Goal: " + goalName + ", Goal Status: " 
+                + goalStatus);
             }
         } catch (SQLException e) {
             e.printStackTrace();
