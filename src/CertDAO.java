@@ -127,10 +127,7 @@ public class CertDAO {
 
             //iterate through the result set and print each goal's details
             while (rs.next()) {
-                String certID = rs.getString("certID"); // convert certID to String to handle null values for INTEGER field (if left as int, null values will return as "0")
-                    if (certID == null) {
-                        certID = "Standalone Goal";
-                    }
+                String certID = rs.getString("certID");
                 String firstName = rs.getString("FirstName");
                 String lastName = rs.getString("LastName");
                 String certName = rs.getString("CertName");
