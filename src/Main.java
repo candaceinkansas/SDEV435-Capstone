@@ -217,12 +217,6 @@
                                 case 3: // View Goals
                                     System.out.println(); // Print a blank line for readability
                                     goalDAO.getAllGoals(); // Call the method to retrieve all goals from the database
-                                    
-                                    
-/* Adding logic to view goals by user ID and certification ID
- * If this works, it will replace the above for loop
- */
-
                                     break; // End of case 3: View Goals
 
                                 case 4: // Return to Main Menu
