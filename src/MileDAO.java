@@ -33,8 +33,8 @@ public class MileDAO {
             "mileID	INTEGER NOT NULL UNIQUE, " +
             "mileName	TEXT NOT NULL, " +
             "mileStatus TEXT NOT NULL CHECK(mileStatus IN ('Not Started', 'In Progress', 'Completed')), " +
-            "mileTargetDate	INTEGER, " +
-            "mileCompleteDate INTEGER, " +
+            "mileTargetDate	TEXT, " +
+            "mileCompleteDate TEXT, " +
             "goalID INTEGER, " +
             "PRIMARY KEY(mileID AUTOINCREMENT), " +
             "FOREIGN KEY(goalID) REFERENCES goal(goalID) " +
