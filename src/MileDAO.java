@@ -87,6 +87,42 @@ public class MileDAO {
         return miles;
     }
 
+// Method to retrieve all milestones from the database; prints milestones ordered by user's last name and grouped by goalID
+    public void getMilesWithGoalName() throws SQLException {
+        String sql = "SELECT m.MileID, m.MileName, m.MileStatus, m.MileTargetDate, m.MileCompleteDate, m.GoalID, " +
+                "u.FirstName, u.LastName, g.GoalName, g.GoalStatus FROM milestone m " +
+                "INNER JOIN goal g ON m.GoalID = g.GoalID " +
+                "INNER JOIN user u ON g.UserID = u.UserID " +
+                "ORDER BY u.LastName, u.FirstName, m.GoalID";
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // Print the header for the milestone details
+            System.out.printf("------------------------------------------------------------\n");
+            System.out.printf("Milestones ordered by user name and grouped by goalID:\n");
+            System.out.printf("------------------------------------------------------------\n");
+            System.out.printf("%-20s\t%-25s\t%-15s\t%-10s\n", "USER", "MILESTONE NAME", "MILESTONE STATUS", "FOR GOAL NAME");
+
+            //iterate through the result set and print each milestone's details
+            while (rs.next()) {
+                String goalID = rs.getString("goalID"); // convert goalID to String to handle null values for INTEGER field (if left as int, null values will return as "0")
+                    if (goalID == null) {
+                        goalID = "Standalone Milestone";
+                    }
+                String firstName = rs.getString("FirstName");
+                String lastName = rs.getString("LastName");
+                String mileName = rs.getString("MileName");
+                String mileStatus = rs.getString("MileStatus");
+                String goalName = rs.getString("GoalName");
+                // Print the milestone details
+                System.out.printf("%-20s\t%-25s\t%-15s\t\t%-10s\n", firstName + " " + lastName, mileName, mileStatus, goalName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+       
+    }
+
     // Method to close the database connection
     public void close() {
         if (conn != null) {

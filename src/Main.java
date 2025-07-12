@@ -302,7 +302,7 @@
                             System.out.println("Generate Reports");
                             System.out.println("1. Generate Certification Report");
                             System.out.println("2. Generate Goal Report");
-                            System.out.println("3. Generate Skill Report");
+                            System.out.println("3. Generate Milestone Report");
                             System.out.println("4. Return to Main Menu");
                             System.out.print("Choose an option: ");
                             int reportChoice = scanner.nextInt();
@@ -318,10 +318,9 @@
                                     goalDAO.getGoalsWithCertID(); // Call the method to retrieve goals by user ID and certification ID
                                     break;
 
-                                case 3: // Generate Skill Report
-                                System.out.println(); // Print a blank line for readability
-                                    // Placeholder for skill report generation logic
-                                    System.out.println("Skill Report Generation is not yet implemented.");
+                                case 3: // Generate Milestone Report
+                                    System.out.println(); // Print a blank line for readability
+                                    mileDAO.getMilesWithGoalName(); // Call the method to retrieve milestones by goal ID
                                     break;
 
                                 case 4: // Return to Main Menu
