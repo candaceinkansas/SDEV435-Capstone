@@ -69,11 +69,35 @@ public class GoalDAO {
             e.printStackTrace();
         }
     }
+    // Method to get a list of goals
+    public List<Goal> getGoals(int userID) throws SQLException {
+        List<Goal> goals = new ArrayList<>();
+        String sql = "SELECT * FROM goal WHERE userID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userID);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                Goal goal = new Goal(
+                    rs.getInt("goalID"),
+                    rs.getString("goalName"),
+                    rs.getString("goalStatus"),
+                    rs.getString("goalTargetDate"),
+                    rs.getString("goalCompleteDate"),
+                    rs.getInt("userID"),
+                    rs.getInt("certID")
+                );
+                goals.add(goal);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return goals;
+    }}
 
     // Method to retrieve all goals from the database; prints goals with user ID, goal ID, goal name, status, target date, and completion date
     public void getAllGoals() throws SQLException {
         List<Goal> goals = new ArrayList<>();
-        String sql = "SELECT * FROM goal";
+        String sql = "SELECT * FROM goal WHERE userID = ";
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {

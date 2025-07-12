@@ -256,9 +256,34 @@
                                     String mileTargetDate = scanner.nextLine();
                                     System.out.print("Enter completion date (YYYY-MM-DD): ");
                                     String mileCompleteDate = scanner.nextLine();
-                                    System.out.print("Enter goal ID: ");
+                                    // System.out.print("Enter goal ID: ");
+                                    // int goalID = scanner.nextInt();
+                                    // scanner.nextLine(); // Consume newline
+
+
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.print("Which user is this for?\n");
+                                    // Print all users to help the user select a user for certification management
+                                        for (User user : userDao.getAllUsers()) {
+                                            System.out.println("\t user number " + user.getUserID() + ": " + user.getFirstName() + " " + user.getLastName());
+                                        } 
+                                        // Prompt the user to select a user to view certifications
+                                        System.out.println("Please enter the user number: ");
+                                        int selectedUserID = scanner.nextInt();
+                                        scanner.nextLine(); // consumes the leftover newline character
+ 
+
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.print("Which goal is dependent on this milestone?\n");
+                                    // Print all goals to help the user select a goal for the milestone
+                                    for (Goal goal : goalDAO.getGoals(selectedUserID)) {
+                                        System.out.println("\t goal number " + goal.getGoalID() + ": " + goal.getGoalName());
+                                    }
+                                    // Prompt the user to select a goal for the milestone
+                                    System.out.println("Please enter the goal number: ");
                                     int goalID = scanner.nextInt();
-                                    scanner.nextLine(); // Consume newline
+                                    scanner.nextLine(); // consumes the leftover newline character
+
 
                                     // Create a new Milestone object and add it to the database
                                     mileDAO.addMile(new Mile(mileName, mileStatus, mileTargetDate, mileCompleteDate, goalID));

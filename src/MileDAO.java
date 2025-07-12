@@ -100,7 +100,7 @@ public class MileDAO {
             System.out.printf("------------------------------------------------------------\n");
             System.out.printf("Milestones ordered by user name and grouped by goalID:\n");
             System.out.printf("------------------------------------------------------------\n");
-            System.out.printf("%-20s\t%-25s\t%-15s\t%-10s\n", "USER", "MILESTONE ID & NAME", "MILESTONE STATUS", "FOR GOAL ID & NAME");
+            System.out.printf("%-20s\t%-50s\t%-15s\t%-10s\n", "USER", "MILESTONE ID & NAME", "MILESTONE STATUS", "FOR GOAL ID & NAME");
 
             //iterate through the result set and print each milestone's details
             while (rs.next()) {
@@ -115,7 +115,7 @@ public class MileDAO {
                 String mileStatus = rs.getString("MileStatus");
                 String goalName = rs.getString("GoalName");
                 // Print the milestone details
-                System.out.printf("%-20s\t%-25s\t%-15s\t\t%-10s\n", firstName + " " + lastName, mileID + " " + mileName, mileStatus, goalID + " " + goalName);
+                System.out.printf("%-20s\t%-50s\t%-15s\t\t%-10s\n", firstName + " " + lastName, mileID + " " + mileName, mileStatus, goalID + " " + goalName);
             }
         } catch (SQLException e) {
             e.printStackTrace();
