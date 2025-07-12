@@ -216,21 +216,11 @@
 
                                 case 3: // View Goals
                                     System.out.println(); // Print a blank line for readability
-                                    System.out.println("Goals:");
-                                    for (Goal goal : goalDAO.getAllGoals()) {
-                                        System.out.println("  User " + goal.getUserID() + " " + " Goal " + goal.getGoalID() + ": " + goal.getGoalName() +
-                                        ", Status: " + goal.getGoalStatus() + ", Target Date: " + goal.getGoalTargetDate() + ", Completion Date: " + goal.getGoalCompleteDate());
-                                    }
+                                    goalDAO.getAllGoals(); // Call the method to retrieve all goals from the database
                                     
                                     
 /* Adding logic to view goals by user ID and certification ID
  * If this works, it will replace the above for loop
- */
-                                    System.out.println(); // Print a blank line for readability
-                                    goalDAO.getGoalsWithCertID(); // Call the method to retrieve goals by user ID and certification ID
-/*
- * Delete above section if it doesn't work.
- * If it does work, consider replacing the original for loop with the above code. Or, have 2 options for returning goals: standalone goals or goals by user, including certIDs.
  */
 
                                     break; // End of case 3: View Goals
@@ -320,14 +310,21 @@
                             switch (reportChoice) {
                                 case 1: // Generate Certification Report
                                     // Implementation not yet coded
+                                    System.out.println(); // Print a blank line for readability
+                                    // Placeholder for certification report generation logic
+                                    System.out.println("Certification Report Generation is not yet implemented.");
                                     break;
 
                                 case 2: // Generate Goal Report
-                                    // Implementation not yet coded
+                                    System.out.println(); // Print a blank line for readability
+                                    goalDAO.getGoalsWithCertID(); // Call the method to retrieve goals by user ID and certification ID
+
                                     break;
 
                                 case 3: // Generate Skill Report
-                                    // Implementation not yet coded
+                                System.out.println(); // Print a blank line for readability
+                                    // Placeholder for skill report generation logic
+                                    System.out.println("Skill Report Generation is not yet implemented.");
                                     break;
 
                                 case 4: // Return to Main Menu

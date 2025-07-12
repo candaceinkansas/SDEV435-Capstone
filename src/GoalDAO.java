@@ -70,8 +70,8 @@ public class GoalDAO {
         }
     }
 
-    // Method to retrieve all goals from the database
-    public List<Goal> getAllGoals() throws SQLException {
+    // Method to retrieve all goals from the database; prints goals with user ID, goal ID, goal name, status, target date, and completion date
+    public void getAllGoals() throws SQLException {
         List<Goal> goals = new ArrayList<>();
         String sql = "SELECT * FROM goal";
         try (Statement stmt = conn.createStatement();
@@ -87,10 +87,34 @@ public class GoalDAO {
                 );
                 goals.add(goal);
             }
+            System.out.println();
+            System.out.println("All Goals:");
+            // Print the goal details.  Fields returned differ based on goal status. Handles null values for target date and only includes completion date if goal is completed.
+            for (Goal goal : goals) {
+                if (goal.getGoalStatus().equals("Completed")) {
+                    System.out.println("  User " + goal.getUserID() + " " + " Goal " + goal.getGoalID() + ": " + goal.getGoalName() +
+                            ", Status: " + goal.getGoalStatus() + ", Target Date: " + goal.getGoalTargetDate() + ", Completion Date: " + goal.getGoalCompleteDate());
+                } else if (goal.getGoalStatus().equals("In Progress") && (goal.getGoalTargetDate() == null || goal.getGoalTargetDate().isEmpty())) {
+                    System.out.println("  User " + goal.getUserID() + " " + " Goal " + goal.getGoalID() + ": " + goal.getGoalName() +
+                            ", Status: " + goal.getGoalStatus() + ", Target Date: Not yet defined"); // If in progress and target date is null or empty, print "Not yet defined"
+                } else if (goal.getGoalStatus().equals("In Progress") && goal.getGoalTargetDate() != null) {
+                    System.out.println("  User " + goal.getUserID() + " " + " Goal " + goal.getGoalID() + ": " + goal.getGoalName() +
+                            ", Status: " + goal.getGoalStatus() + ", Target Date: " + goal.getGoalTargetDate()); // If in progress with a target date, print the target date
+                } else if (goal.getGoalStatus().equals("Not Started") && (goal.getGoalTargetDate() == null || goal.getGoalTargetDate().isEmpty())) {
+                    System.out.println("  User " + goal.getUserID() + " " + " Goal " + goal.getGoalID() + ": " + goal.getGoalName() +
+                            ", Status: " + goal.getGoalStatus() + ", Target Date: Not yet defined"); // If not started and target date is null or empty, print "Not yet defined"
+                } else if (goal.getGoalStatus().equals("Not Started") && goal.getGoalTargetDate() != null) {
+                    System.out.println("  User " + goal.getUserID() + " " + " Goal " + goal.getGoalID() + ": " + goal.getGoalName() +
+                            ", Status: " + goal.getGoalStatus() + ", Target Date: " + goal.getGoalTargetDate()); // If not started with a target date, print the target date       
+                } else {
+                    // If the goal status is not recognized, print a default message
+                    System.out.println("  Error when attempting to retrieve goal information.");
+                }
+            } // End of while loop
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return goals;
+        //return goals;
     }
 
     // Method to retrieve all goals from the database; prints goals ordered by user's last name and grouped by certID
