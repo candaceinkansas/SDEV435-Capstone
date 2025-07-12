@@ -112,6 +112,38 @@ public class CertDAO {
         return certs; // Return the certifications found
     }
 
+       // Method to retrieve all goals from the database; prints goals ordered by user's last name and grouped by certID
+    public void getCertsWithUserName() throws SQLException {
+        String sql = "SELECT c.UserID, u.FirstName, u.LastName, c.CertName, c.CertStatus, c.CertID, c.CertTargetDate, " +
+                "c.CertCompleteDate FROM certification c INNER JOIN user u ON c.UserID = u.UserID ORDER BY u.LastName, u.FirstName, c.CertID";
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // Print the header for the goal details
+            System.out.printf("------------------------------------------------------------\n");
+            System.out.printf("Certifications grouped by user:\n");
+            System.out.printf("------------------------------------------------------------\n");
+            System.out.printf("%-20s\t%-37s\t%-15s\n", "USER", "CERTIFICATION ID & NAME", "CERTIFICATION STATUS");
+
+            //iterate through the result set and print each goal's details
+            while (rs.next()) {
+                String certID = rs.getString("certID"); // convert certID to String to handle null values for INTEGER field (if left as int, null values will return as "0")
+                    if (certID == null) {
+                        certID = "Standalone Goal";
+                    }
+                String firstName = rs.getString("FirstName");
+                String lastName = rs.getString("LastName");
+                String certName = rs.getString("CertName");
+                String certStatus = rs.getString("CertStatus");
+                // Print the goal details
+                System.out.printf("%-20s\t%-2s%-30s\t%-15s\n", firstName + " " + lastName, certID, certName, certStatus);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+       
+    }
+
 
     // Method to close the database connection
     public void close() {

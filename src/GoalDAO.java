@@ -120,15 +120,15 @@ public class GoalDAO {
     // Method to retrieve all goals from the database; prints goals ordered by user's last name and grouped by certID
     public void getGoalsWithCertID() throws SQLException {
         String sql = "SELECT g.UserID, u.FirstName, u.LastName, g.GoalName, g.GoalStatus, g.CertID, g.GoalTargetDate, " +
-                "g.GoalCompleteDate FROM goal g INNER JOIN user u ON g.UserID = u.UserID ORDER BY u.LastName, g.CertID";
+                "g.GoalCompleteDate FROM goal g INNER JOIN user u ON g.UserID = u.UserID ORDER BY u.LastName, u.FirstName,g.CertID";
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(sql);
 
             // Print the header for the goal details
             System.out.printf("------------------------------------------------------------\n");
-            System.out.printf("Goals ordered by user's last name and grouped by certID:\n");
+            System.out.printf("Goals ordered by user name and grouped by certID:\n");
             System.out.printf("------------------------------------------------------------\n");
-            System.out.printf("%-20s\t%-20s\t%-50s\t%-15s\n", "USER", "CERTIFICATE", "GOAL NAME", "GOAL STATUS");
+            System.out.printf("%-20s\t%-50s\t%-15s\t%-20s\n", "USER", "GOAL NAME", "GOAL STATUS", "FOR CERT ID");
 
             //iterate through the result set and print each goal's details
             while (rs.next()) {
@@ -141,7 +141,7 @@ public class GoalDAO {
                 String goalName = rs.getString("GoalName");
                 String goalStatus = rs.getString("GoalStatus");
                 // Print the goal details
-                System.out.printf("%-20s\t%-20s\t%-50s\t%-15s\n", firstName + " " + lastName, certID, goalName, goalStatus);
+                System.out.printf("%-20s\t%-50s\t%-15s\t%-20s\n", firstName + " " + lastName, goalName, goalStatus, certID);
             }
         } catch (SQLException e) {
             e.printStackTrace();

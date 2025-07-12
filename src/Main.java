@@ -309,16 +309,13 @@
                             scanner.nextLine(); // Consume newline
                             switch (reportChoice) {
                                 case 1: // Generate Certification Report
-                                    // Implementation not yet coded
                                     System.out.println(); // Print a blank line for readability
-                                    // Placeholder for certification report generation logic
-                                    System.out.println("Certification Report Generation is not yet implemented.");
+                                    certDAO.getCertsWithUserName(); // Call the method to retrieve certifications by user name
                                     break;
 
                                 case 2: // Generate Goal Report
                                     System.out.println(); // Print a blank line for readability
                                     goalDAO.getGoalsWithCertID(); // Call the method to retrieve goals by user ID and certification ID
-
                                     break;
 
                                 case 3: // Generate Skill Report
