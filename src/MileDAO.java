@@ -40,7 +40,6 @@ public class MileDAO {
             "FOREIGN KEY(goalID) REFERENCES goal(goalID) " +
             ") STRICT";
 
-
         try (Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) { // Handle SQL exceptions, such as duplicate entries
