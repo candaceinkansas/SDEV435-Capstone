@@ -97,7 +97,7 @@ public class GoalDAO {
     // Method to retrieve all goals from the database; prints goals with user ID, goal ID, goal name, status, target date, and completion date
     public void getAllGoals() throws SQLException {
         List<Goal> goals = new ArrayList<>();
-        String sql = "SELECT * FROM goal WHERE userID = ";
+        String sql = "SELECT * FROM goal";
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {

@@ -262,7 +262,7 @@
 
 
                                     System.out.println(); // Print a blank line for readability
-                                    System.out.print("Which user is this for?\n");
+                                    System.out.print("Which user is this?\n");
                                     // Print all users to help the user select a user for certification management
                                         for (User user : userDao.getAllUsers()) {
                                             System.out.println("\t user number " + user.getUserID() + ": " + user.getFirstName() + " " + user.getLastName());
