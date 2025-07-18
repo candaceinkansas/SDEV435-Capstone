@@ -63,6 +63,32 @@ public class MileDAO {
         }
     }
 
+ // Method to update the milestone status to "Completed" and set the completion date
+    // Uses a prepared statement to prevent SQL injection and handle null values
+    public void updateMileCompleteDate(String newCompleteDate, int mileID) throws SQLException {
+        String sql = "UPDATE milestone SET mileCompleteDate = ?, mileStatus = 'Completed' WHERE mileID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newCompleteDate);
+            pstmt.setInt(2, mileID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {  // Handle SQL exceptions, such as duplicate entries
+            e.printStackTrace();
+        }
+    }
+
+    // Method to change milestone status to "In Progress"
+    // Uses a prepared statement to prevent SQL injection and handle null values
+    public void updateMileStatus(String newStatus, int mileID) throws SQLException {
+        String sql = "UPDATE milestone SET mileStatus = ?, mileCompleteDate = null WHERE mileID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newStatus);
+            pstmt.setInt(2, mileID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {  // Handle SQL exceptions, such as duplicate entries
+            e.printStackTrace();
+        }
+    }
+
     // Method to retrieve all milestones from the database
     public List<Mile> getAllMiles() throws SQLException {
         List<Mile> miles = new ArrayList<>();

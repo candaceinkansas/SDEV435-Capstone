@@ -238,7 +238,7 @@
                             System.out.println(); // Print a blank line for readability
                             System.out.println("Manage Milestones");
                             System.out.println("1. Add Milestone");
-                            System.out.println("2. Update Milestones");
+                            System.out.println("2. Update Milestone Status");
                             System.out.println("3. View Milestone");
                             System.out.println("4. Return to Main Menu");
                             System.out.print("Choose an option: ");
@@ -293,7 +293,47 @@
 
                                 case 2: // Update Milestone Status
                                     // Implementation not yet coded
-                                    break;
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.print("Which milestone do you want to update?\n");
+                                    // Print all milestones to help the user select a milestone for updating
+                                        for (Mile mile : mileDAO.getAllMiles()) {   
+                                            System.out.println("\t milestone number " + mile.getMileID() + ": " + mile.getMileName());
+                                        }
+                                        // Prompt the user to select a milestone for updating   
+                                        System.out.print("Please enter milestone number: ");
+                                        int mileIDToUpdate = scanner.nextInt();
+                                        scanner.nextLine(); // consumes the leftover newline character
+
+                                    System.out.print("Shall I update status to completed? (Y or N): ");
+                                    String response = scanner.next().trim().toUpperCase(); // Read the input and convert it to uppercase (expecting a single character)
+                                    scanner.nextLine(); // consumes the leftover newline character
+                                        if (response.equals("Y")) {
+                                            // Prompt for the complete date if marking as completed
+                                            System.out.print("Enter date completed (YYYY-MM-DD): ");
+                                            String completeDate = scanner.nextLine();            
+                                                                                        
+                                            // Call method to update the milestone's completion date and status
+                                            mileDAO.updateMileCompleteDate(completeDate, mileIDToUpdate);
+
+                                            System.out.println("\nMilestone " + mileIDToUpdate + " marked as complete with date: " + completeDate);
+
+                                        } else {
+                                            // If not marking complete, ask about changing to "In Progress"
+                                            System.out.println("Shall I update status to in progress? (Y or N): ");
+                                            response = scanner.next().trim().toUpperCase(); // Read the input and convert it to uppercase (expecting a single character)
+                                            scanner.nextLine(); // consumes the leftover newline character
+                                                if (response.equals("Y")) {
+                                                    // Call method to update the milestone's status to 'In Progress'
+                                                    mileDAO.updateMileStatus("In Progress", mileIDToUpdate);
+                                                    System.out.println("Milestone " + mileIDToUpdate + " status updated to 'In Progress'.");
+
+                                                } else {
+                                                    System.out.println("No updates applied.");
+                                                }
+                                        }
+                                   
+                                    System.out.println("\nWhat's next?");
+                                    break; //  End of case 2: Update Milestone Status
                                 
                                 case 3: // View Milestones
                                     System.out.println(); // Print a blank line for readability
