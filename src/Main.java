@@ -297,7 +297,7 @@
                                     System.out.print("Which milestone do you want to update?\n");
                                     // Print all milestones to help the user select a milestone for updating
                                         for (Mile mile : mileDAO.getAllMiles()) {   
-                                            System.out.println("\t milestone number " + mile.getMileID() + ": " + mile.getMileName());
+                                            System.out.println("\t#" + mile.getMileID() + ": " + mile.getMileName());
                                         }
                                         // Prompt the user to select a milestone for updating   
                                         System.out.print("Please enter milestone number: ");
@@ -339,7 +339,7 @@
                                     System.out.println(); // Print a blank line for readability
                                     System.out.println("Milestones:");
                                     for (Mile mile : mileDAO.getAllMiles()) {
-                                        System.out.println("- " + mile.getMileName());
+                                        System.out.println("\t#" + mile.getMileID() + ": " + mile.getMileName());
                                     }
                                     break;
 
