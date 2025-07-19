@@ -102,10 +102,48 @@
                                     break;
                                     // End of case 1: Add Certification
 
-                                case 2: // Update Certification
-                                    // Implementation not yet coded
-                                    break;
-                                    // End of case 2: Update Certification
+                                case 2: // Update Certification Status
+                                    System.out.println(); // Print a blank line for readability
+                                    System.out.print("Which certification do you want to update?\n");
+                                    // Print all certifications to help the user select a certification for updating
+                                        for (Cert cert : certDAO.getAllCerts()) {
+                                            System.out.println("\t#" + cert.getCertID() + ": " + cert.getCertName());
+                                        }
+                                    // Prompt the user to select a certification for updating
+                                    System.out.print("Please enter certification number: ");
+                                    int certIDToUpdate = scanner.nextInt();
+                                    scanner.nextLine(); // consumes the leftover newline character
+
+                                    System.out.print("Shall I update status to completed? (Y or N): ");
+                                    String response = scanner.next().trim().toUpperCase(); // Read the input and convert
+                                    // it to uppercase (expecting a single character)
+                                    scanner.nextLine(); // consumes the leftover newline character
+                                    if (response.equals("Y")) {
+                                        // Prompt for the complete date if marking as completed
+                                        System.out.print("Enter date completed (YYYY-MM-DD): ");
+                                        String completeDate = scanner.nextLine();
+
+                                        // Call method to update the certification's completion date and status
+                                        certDAO.updateCertCompleteDate(completeDate, certIDToUpdate);
+
+                                        System.out.println("\nCertification " + certIDToUpdate + " marked as complete with date: " + completeDate);
+                                    
+                                    } else {
+                                        // If not marking complete, ask about changing to "In Progress"
+                                        System.out.println("Shall I update status to in progress? (Y or N): ");
+                                        response = scanner.next().trim().toUpperCase(); // Read the input and convert it
+                                        // to uppercase (expecting a single character)
+                                        scanner.nextLine(); // consumes the leftover newline character
+                                        if (response.equals("Y")) {
+                                            // Call method to update the certification's status to 'In Progress'
+                                            certDAO.updateCertStatus("In Progress", certIDToUpdate);
+                                            System.out.println("Certification " + certIDToUpdate + " status updated to 'In Progress'.");
+                                        } else {
+                                            System.out.println("No updates applied.");
+                                        }
+                                    }
+                                    System.out.println("\nWhat's next?");
+                                    break;  // End of case 2: Update Certification
 
                                 case 3: // View Certifications
                                     System.out.println(); // Print a blank line for readability

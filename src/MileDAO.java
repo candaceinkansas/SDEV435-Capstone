@@ -76,7 +76,7 @@ public class MileDAO {
         }
     }
 
-    // Method to change milestone status to "In Progress"
+    // Method to change milestone status
     // Uses a prepared statement to prevent SQL injection and handle null values
     public void updateMileStatus(String newStatus, int mileID) throws SQLException {
         String sql = "UPDATE milestone SET mileStatus = ?, mileCompleteDate = null WHERE mileID = ?";

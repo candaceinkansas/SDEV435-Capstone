@@ -64,6 +64,32 @@ public class CertDAO {
         }
     }
 
+    // Method to update the certification status to "Completed and set the completion date"
+    // Uses a prepared statement to prevent SQL injection
+    public void updateCertCompleteDate(String newCompleteDate, int certID) throws SQLException {
+        String sql = "UPDATE certification SET certCompleteDate = ?, certStatus = 'Completed' WHERE certID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newCompleteDate);
+            pstmt.setInt(2, certID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) { // Handle SQL exceptions, such as duplicate entries
+            e.printStackTrace();
+        }
+    }
+
+
+    // Method to change certification status to "In Progress"
+    public void updateCertStatus(String newStatus, int certID) throws SQLException {
+        String sql = "UPDATE certification SET certStatus = ?, certCompleteDate = NULL WHERE certID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newStatus);
+            pstmt.setInt(2, certID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) { // Handle SQL exceptions, such as duplicate entries
+            e.printStackTrace();
+        }
+    }
+
     // Method to retrieve all certifications from the database
     public List<Cert> getAllCerts() throws SQLException {
         List<Cert> certs = new ArrayList<>();
