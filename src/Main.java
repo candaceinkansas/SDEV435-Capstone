@@ -98,6 +98,49 @@
                                     // Create a new Certification object and add it to the database
                                     certDAO.addCert(new Cert(certName, certStatus, certTargetDate, certCompleteDate, userID));
                                     System.out.println(); // Print a blank line for readability
+
+                                    // Get the certID for the newly added certification
+                                    int certID = certDAO.getLastCertID();
+                                    System.out.println("CertID: " + certID + " has been added for certification: " + certName);
+
+                                    // A new certification requires at least one related goal
+                                    System.out.println("Certification added successfully. Please add the initial goal for this certification.");
+                                    // Prompt for goal details
+                                        System.out.print("Enter goal name: ");
+                                        String goalName = scanner.nextLine();
+                                        System.out.print("Enter goal status (Not Started, In Progress, Completed): ");
+                                        String goalStatus = scanner.nextLine();
+                                        System.out.print("Enter target date (YYYY-MM-DD): ");
+                                        String goalTargetDate = scanner.nextLine();
+                                        System.out.print("Enter completion date (YYYY-MM-DD) or <Enter> if not complete: ");
+                                        String goalCompleteDate = scanner.nextLine();
+
+                                        // Create a new Goal object and add it to the database
+                                        goalDAO.addGoal(new Goal(goalName, goalStatus, goalTargetDate, goalCompleteDate, userID, certID));
+                                    
+            
+                                    // Ask if the user wants to add additional goals for this certification
+                                    System.out.print("Would you like to add another goal for this certification? (Y or N): ");
+                                    String addGoalResponse = scanner.next().trim().toUpperCase(); // Read the input and convert it to uppercase (expecting y or n)
+                                    scanner.nextLine(); // consumes the leftover newline character
+                                    while (addGoalResponse.equals("Y")) {
+                                        // Prompt for goal details
+                                        System.out.print("Enter goal name: ");
+                                        String NextgoalName = scanner.nextLine();
+                                        System.out.print("Enter goal status (Not Started, In Progress, Completed): ");
+                                        String NextgoalStatus = scanner.nextLine();
+                                        System.out.print("Enter target date (YYYY-MM-DD): ");
+                                        String NextgoalTargetDate = scanner.nextLine();
+                                        System.out.print("Enter completion date (YYYY-MM-DD) or <Enter> if not complete: ");
+                                        String NextgoalCompleteDate = scanner.nextLine();
+
+                                        // Create a new Goal object and add it to the database
+                                        goalDAO.addGoal(new Goal(NextgoalName, NextgoalStatus, NextgoalTargetDate, NextgoalCompleteDate, userID, certID));
+                                    System.out.print("Would you like to add another goal for this certification? (Y or N): ");
+                                    addGoalResponse = scanner.next().trim().toUpperCase(); // Read the input and convert it to uppercase (expecting y or n)
+                                    scanner.nextLine(); // consumes the leftover newline character
+                                    }
+
                                     System.out.println("Process complete.  What's next?");
                                     break;
                                     // End of case 1: Add Certification

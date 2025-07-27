@@ -64,6 +64,20 @@ public class CertDAO {
         }
     }
 
+    // Method to get certID for the last-added certification
+    public int getLastCertID() throws SQLException {
+        String sql = "SELECT * FROM certification ORDER BY certID DESC LIMIT 1";
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) {
+                return rs.getInt("certID");
+            }
+        } catch (SQLException e) { // Handle SQL exceptions, such as duplicate entries
+            e.printStackTrace();
+        }
+        return -1; // Return -1 if no ID was found
+    }
+
     // Method to update the certification status to "Completed and set the completion date"
     // Uses a prepared statement to prevent SQL injection
     public void updateCertCompleteDate(String newCompleteDate, int certID) throws SQLException {
