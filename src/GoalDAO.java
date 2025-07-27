@@ -46,8 +46,7 @@ public class GoalDAO {
             stmt.execute(sql);
         } catch (SQLException e) { // Handle SQL exceptions, such as duplicate entries
             e.printStackTrace();
-        }
-    }
+        }} // end of createTable method
 
     // Method to add a new goal to the database
     // Uses a prepared statement to prevent SQL injection and handle null values
@@ -67,8 +66,32 @@ public class GoalDAO {
             pstmt.executeUpdate();
         } catch (SQLException e) {  // Handle SQL exceptions, such as duplicate entries
             e.printStackTrace();
-        }
-    }
+        }} // end of addGoal method
+
+    // Method to update the goal status to "Completed" and set the completion date
+    // Uses a prepared statement to prevent SQL injection and handle null values
+    public void updateGoalCompleteDate(String newCompleteDate, int goalID) throws SQLException {
+        String sql = "UPDATE goal SET goalCompleteDate = ?, goalStatus = 'Completed' WHERE goalID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newCompleteDate);
+            pstmt.setInt(2, goalID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {  // Handle SQL exceptions, such as duplicate entries
+            e.printStackTrace();
+        }} // end of updateGoalCompleteDate method
+
+    // Method to change goal status
+    // Uses a prepared statement to prevent SQL injection and handle null values
+    public void updateGoalStatus(String newStatus, int goalID) throws SQLException {
+        String sql = "UPDATE goal SET goalStatus = ?, goalCompleteDate = null WHERE goalID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newStatus);
+            pstmt.setInt(2, goalID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {  // Handle SQL exceptions, such as duplicate entries
+            e.printStackTrace();
+        }} // end of updateGoalStatus method
+
     // Method to get a list of goals
     public List<Goal> getGoals(int userID) throws SQLException {
         List<Goal> goals = new ArrayList<>();
@@ -87,12 +110,12 @@ public class GoalDAO {
                     rs.getInt("certID")
                 );
                 goals.add(goal);
-            }
+            } 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return goals;
-    }}
+        return goals; 
+    }} // end of getGoals method
 
     // Method to retrieve all goals from the database; prints goals with user ID, goal ID, goal name, status, target date, and completion date
     public void getAllGoals() throws SQLException {
@@ -137,9 +160,7 @@ public class GoalDAO {
             } // End of while loop
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        //return goals;
-    }
+        }} // end of getAllGoals method
 
     // Method to retrieve all goals from the database; prints goals ordered by user's last name and grouped by certID
     public void getGoalsWithCertID() throws SQLException {
@@ -169,9 +190,7 @@ public class GoalDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-       
-    }
+        }} // end of getGoalsWithCertID method
 
     // Method to close the database connection
     public void close() {
@@ -181,7 +200,6 @@ public class GoalDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-    }
+        }} // end of close method
 } // End of GoalDAO class
 

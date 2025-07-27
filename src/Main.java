@@ -246,11 +246,57 @@
                                     break;  // End of case 1: Add Goal
 
                                 case 2: // Update Goal Status
-                                    System.out.println(); // Print a blank line for readability
-                                    System.out.print("Update functionality not yet coded"); // Print a blank line for readability
-                                    System.out.println(); // Print a blank line for readability
-                                    System.out.println("Process complete.  What's next?");
-                                    break; // End of case 2: Update Goal Status
+                                System.out.println(); // Print a blank line for readability
+                                    System.out.print("Which user is this?\n");
+                                    // Print all users to help the user select a user for certification management
+                                        for (User user : userDao.getAllUsers()) {
+                                            System.out.println("\t user number " + user.getUserID() + ": " + user.getFirstName() + " " + user.getLastName());
+                                        } 
+                                        // Prompt the user to select a user to view certifications
+                                        System.out.println("Please enter the user number: ");
+                                        int chosenUserID = scanner.nextInt();
+                                        scanner.nextLine(); // consumes the leftover newline character
+                                        
+                                    System.out.print("Which goal do you want to update?\n");
+                                    // Print all goals to help the user select a goal for updating
+                                        for (Goal goal : goalDAO.getGoals(chosenUserID)) {
+                                            System.out.println("\t#" + goal.getGoalID() + ": " + goal.getGoalName());
+                                        }
+                                    // Prompt the user to select a goal for updating
+                                    System.out.print("Please enter goal number: ");
+                                    int goalIDToUpdate = scanner.nextInt();
+                                    scanner.nextLine(); // consumes the leftover newline character
+
+                                    System.out.print("Shall I update status to completed? (Y or N): ");
+                                    String response = scanner.next().trim().toUpperCase(); // Read the input and convert
+                                    // it to uppercase (expecting a single character)
+                                    scanner.nextLine(); // consumes the leftover newline character
+                                    if (response.equals("Y")) {
+                                        // Prompt for the complete date if marking as completed
+                                        System.out.print("Enter date completed (YYYY-MM-DD): ");
+                                        String completeDate = scanner.nextLine();
+
+                                        // Call method to update the goal's completion date and status
+                                        goalDAO.updateGoalCompleteDate(completeDate, goalIDToUpdate);
+
+                                        System.out.println("\nGoal " + goalIDToUpdate + " marked as complete with date: " + completeDate);
+
+                                    } else {
+                                        // If not marking complete, ask about changing to "In Progress"
+                                        System.out.println("Shall I update status to in progress? (Y or N): ");
+                                        response = scanner.next().trim().toUpperCase(); // Read the input and convert it
+                                        // to uppercase (expecting a single character)
+                                        scanner.nextLine(); // consumes the leftover newline character
+                                        if (response.equals("Y")) {
+                                            // Call method to update the goal's status to 'In Progress'
+                                            goalDAO.updateGoalStatus("In Progress", goalIDToUpdate);
+                                            System.out.println("Goal " + goalIDToUpdate + " status updated to 'In Progress'.");
+                                        } else {
+                                            System.out.println("No updates applied.");
+                                        }
+                                    }
+                                    System.out.println("\nWhat's next?");
+                                    break;  // End of case 2: Update Goal
 
                                 case 3: // View Goals
                                     System.out.println(); // Print a blank line for readability
