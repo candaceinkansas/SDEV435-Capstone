@@ -7,12 +7,28 @@ Perfect for students, professionals, or anyone looking to organize their skill d
 This project creates skills_tracker.db automatically in the project root if it doesn't exist. Run the app to initialize it.
 
 ## Prerequisites
-The only requirement is **Java Development Kit (JDK) 8 or higher** installed on your system.
+The only requirement is **Java Development Kit (JDK) 21 or higher** installed on your system.
 To verify Java installation, run (bash):
   ```bash
   java -version
   javac -version
 ```
+If you do not have JDK21 installed, but your machine includes a Windows Package Manager (winget) you can install it through the command window:
+1. Open PowerShell or Command Prompt as Administrator
+2. Use the winget search for OpenJDK:
+```bash
+winget search Microsoft.OpenJDK
+```
+3. Install OpenJDK21:
+```bash
+winget install Microsoft.OpenJDK.21
+```
+4. Verify Installation:
+```bash
+javac -version
+```
+This should display information about the installed Java 21 version.
+
 
 ## Installation and Setup
 1. Download the Project
@@ -31,11 +47,11 @@ To verify Java installation, run (bash):
 ```
 4. Run the Application **Windows** (bash):
 ```bash
-    java -cp "lib/sqlite-jdbc-3.49.1.0.jar;src"Main
+    java -cp "lib/sqlite-jdbc-3.49.1.0.jar;src" Main
 ```
 4. Run the Application **Mac/Linux** (bash):
 ```bash
-    java -cp "lib/sqlite-jdbc-3.49.1.0.jar:src"Main
+    java -cp "lib/sqlite-jdbc-3.49.1.0.jar:src" Main
 ```
 5. Start Tracking!
 
