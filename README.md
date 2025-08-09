@@ -37,24 +37,26 @@ You can now proceed with installing and setting up my SkillsTracker application 
     - select "download ZIP"
     - Extract the ZIP file to your preferred location
 
-2. Navigate to the Project Directory (bash)
+2. Navigate to the Project Directory and run this command:
   ```bash
       cd path/to/SDEV435-Capstone
 ```
 
-3. Compile the Application (bash)
+3. Compile the Application
   ```bash
       javac -cp "lib/sqlite-jdbc-3.49.1.0.jar" src/*.java
 ```
-4. Run the Application **Windows** (bash):
+4. Run the Application **Windows**:
 ```bash
     java -cp "lib/sqlite-jdbc-3.49.1.0.jar;src" Main
 ```
-4. Run the Application **Mac/Linux** (bash):
+4. Run the Application **Mac/Linux**:
 ```bash
     java -cp "lib/sqlite-jdbc-3.49.1.0.jar:src" Main
 ```
 5. Start Tracking!
+   - The application will automatically create the database (skills_tracker.db) in the project root.
+   - Follow the on-screen prompts to begin tracking your skills.
 
 ## Project Structure
 <img width="969" height="288" alt="image" src="https://github.com/user-attachments/assets/c98cd327-233c-43a0-84a4-4e538e968e44" />
