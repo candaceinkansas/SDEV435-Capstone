@@ -15,19 +15,20 @@ To verify Java installation, run (bash):
 ```
 If you do not have JDK21 installed, but your machine includes a Windows Package Manager (winget) you can install it through the command window:
 1. Open PowerShell or Command Prompt as Administrator
-2. Use the winget search for OpenJDK:
+2. Use the winget search for OpenJDK (and accept the terms):
 ```bash
-winget search Microsoft.OpenJDK
+    winget search Microsoft.OpenJDK
 ```
-3. Install OpenJDK21:
+3. Install OpenJDK21 (wait for the installer to do its thing):
 ```bash
-winget install Microsoft.OpenJDK.21
+    winget install Microsoft.OpenJDK.21
 ```
 4. Verify Installation:
 ```bash
-javac -version
+    javac -version
 ```
 This should display information about the installed Java 21 version.
+You can now proceed with installing and setting up my SkillsTracker application (using the instructions below).
 
 
 ## Installation and Setup
